@@ -5,7 +5,7 @@ import Qs from 'qs'
 
 // 创建axios实例
 const service = axios.create({
-    baseURL: process.env.VUE_APP_API, // api的baseURL
+    baseURL: process.env.VUE_APP_MOCK === 'true' ? 'http://rap2api.taobao.org/app/mock/238102' : process.env.VUE_APP_API, // api的baseURL如果启用mock则使用mock地址
     timeout: 60000 // 请求超时时间,
 })
 const requestKey = 'U2FsdGVkX189N3VRCrUckSMoQM98v8PB';
@@ -14,8 +14,12 @@ const appKey = 'cb6015828a44b5234ce9ed1c3bc7acb0';
 const SEEDMD5 = callMd5(requestKey);
 // request拦截器
 service.interceptors.request.use(config => {
-    //加密请求参数
-    // let encode = encodeData(JSON.stringify(config.data),callMd5(requestKey));
+
+    // @如果启用mock则使用mock地址
+    if( process.env.VUE_APP_MOCK === 'true'){
+        return config;
+    }
+    // 加密请求参数
     let slol = JSON.stringify(config.data);
     let data = encryptBy(slol, SEEDMD5);  //加密参数
     let t = Date.parse(new Date());       //时间戳
@@ -29,6 +33,7 @@ service.interceptors.request.use(config => {
         sign,
     }
     config.data = Qs.stringify(newParams);
+
     return config
 }, error => {
     // Do something with request error
@@ -37,10 +42,19 @@ service.interceptors.request.use(config => {
 })
 // response 拦截器
 service.interceptors.response.use(response => {
+    // @如果启用mock则使用mock地址
+    if( process.env.VUE_APP_MOCK === 'true'){
+        if(response.data.retType !==1){
+            Toast(response.data.message||'服务器器异常，请稍后再试')
+            return false
+        }else{
+            return response.data;
+        }
+    }
     //解密接受参数
-    console.log(response)
     response.data = JSON.parse(decryptBy(response.data,callMd5(responseKey)));
     const resData = response.data;
+    console.log(resData)
     const headers = response.headers;
     if (headers['content-type'] == 'application/vnd.ms-excel;charset=utf-8') {
         return response
@@ -56,8 +70,8 @@ service.interceptors.response.use(response => {
             Toast.fail(msg.message);
         }
     } else if (resData.retType !== 1 && resData.retType !== '1') {
-        const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g')
-        Toast.fail(resData.retMsg && reg.test(resData.retMsg) ? resData.retMsg : '服务器异常，请稍后再试')
+        // const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g')
+        Toast.fail(resData.retMsg  ? resData.retMsg : '服务器异常，请稍后再试');
         // return Promise.reject(new Error('error'))
         return {
             success: false

@@ -1,13 +1,123 @@
 <template>
-    $END$
+    <div>
+        <div class="mask">
+        </div>
+        <div class="dialog-win">
+            <img @click="closeWin" class="close-window" src="~@/assets/images/dialog/icon-close.png" alt="">
+            <div class="dialog-title">
+                <img  src="~@/assets/images/dialog/icon-success.png" alt="">
+                <h2>注册成功</h2>
+            </div>
+            <div class="dialog-body">
+                <p>请选择操作</p>
+                <ul>
+                    <li>
+                        <div class="box">
+                            <p>注册商号</p>
+                            <div class="box-item">
+                                <div class="title-icon">
+                                    <img src="~@/assets/images/register/logo-blue.png" alt=""> <span>呼哈城市商家版</span>
+                                </div>
+                            </div>
+                            <div class="box-item">
+                                <button class="btn-small" @click="jump(1)">打开</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="box">
+                            <p>开通社区号·查看会员权限</p>
+                            <div class="box-item">
+                                <div class="title-icon">
+                                    <img src="~@/assets/images/register/logo-red.png" alt=""> <span>呼哈城市App</span>
+                                </div>
+                            </div>
+                            <div class="box-item">
+                                <button class="btn-small" @click="jump(2)">打开</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="box">
+                            <p>激活联盟号</p>
+                            <div class="box-item">
+                                <div class="title-icon">
+                                    <img src="~@/assets/images/register/logo-none.png" alt=""> <span>呼哈联盟</span>
+                                </div>
+                            </div>
+                            <div class="box-item">
+                                <button class="btn-small" @click="jump(3)">打开</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+                <h2>城市代理</h2>
+                <p>关注微信公众号"呼哈商机"和我们联系</p>
+                <a class="download" href="~@/assets/images/cooperation/qrCode.png" download="qrCode.png" style="display: none"></a>
+                <img id="downloadBtn" src="~@/assets/images/cooperation/qrCode.png" alt="">
+                <p>长按下载二维码</p>
+            </div>
+        </div>
+    </div>
 </template>
-
 <script>
+     import { holdTodonwLoad } from '@/plugins/extension'
     export default {
-        name: "index"
+        name: "dialogWindow",
+        data (){
+            return {
+                timer:null,
+                startTime:'',
+                endTime:''
+            }
+        },
+        mounted(){
+          //  holdTodonwLoad('download')
+        },
+        methods:{
+            closeWin(){
+                this.$emit('closeWindow');
+            },
+            jump(num){
+                let links = ['https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd','http://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacity','http://lm.huhacity.com']
+                window.location.href = links[num-1];
+            },
+        }
     }
 </script>
-
 <style scoped>
-
+    .footer{
+        padding: 10px;
+        margin-top: 10px;
+        text-align: center;
+        h2{
+            font-size:18px;
+            margin:0 !important;
+        }
+        p{
+            font-size: 12px;
+            color:rgba(51,51,51,1);
+            &:last-child{
+                color: rgba(228,6,27,1);
+            }
+        }
+    }
+    .btn-small{
+        border: 0;
+        background-color: #F82744;
+        font-size: 12px;
+        border-radius: 20px;
+        padding: 5px 20px;
+        color: white;
+    }
+    .close-window{
+        width:41px ;
+        height: 41px;
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translate(-50%,0);
+    }
 </style>

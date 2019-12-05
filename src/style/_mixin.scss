@@ -1,0 +1,129 @@
+/*
+@ 可重用样式表
+@ 调用方法：
+    div { @include text-ellipsis } 如哟参数像调用JS函数一样传入参数
+*/
+
+//完整文字超出显示省略号
+@mixin text-overflow($width:100%,$display:block) {
+  width: $width;
+  display: $display;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+//清除浮动
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+//弹性盒子布局
+@mixin flex-center($direction:row,$justify:center,$align:center,$flex-wrap: null) {
+  display: -webkit-flex;
+  display: flex;
+  @if ($direction!=null) {
+    flex-direction: $direction;
+  }
+  @if ($justify!=null) {
+    justify-content: $justify;
+  }
+  @if ($align!=null) {
+    align-items: $align;
+  }
+  @if ($flex-wrap != null) {
+    flex-wrap: $flex-wrap;
+  }
+}
+//绝对定位
+@mixin position-a($top:null,$right:null,$bottom:null,$left:null) {
+  position: absolute;
+  @if ($left!="" & & $left!=null) {
+    left: $left;
+  }
+  @if ($right!="" & & $right!=null) {
+    right: $right;
+  }
+  @if ($top!="" & & $top!=null) {
+    top: $top;
+  }
+  @if ($bottom!="" & & $bottom!=null) {
+    bottom: $bottom;
+  }
+}
+//向左浮动
+@mixin float-left($width:19%,$margin-right:1.2%) {
+  width: $width;
+  float: left;
+  @if ($margin-right!=null) {
+    margin-right: $margin-right;
+  }
+}
+//向右浮动
+@mixin float-right($width:19%,$margin-left:1.2%) {
+  width: $width;
+  float: right;
+  @if ($margin-left!=null) {
+    margin-left: $margin-left;
+  }
+}
+//渐变从下往上
+@mixin linear-gradient($direction:bottom,$color1:transparent,$color2:#306eff,$color3:transparent) {
+  //background: -webkit-linear-gradient($direction,$colorTop, $colorCenter, $colorBottom); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient($direction, $color1, $color2, $color3); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient($direction, $color1, $color2, $color3); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to $direction, $color1, $color2, $color3); /* 标准的语法 */
+}
+//行高
+@mixin line-height($height:30px,$line-height:30px) {
+  @if ($height != null) {
+    height: $height;
+  }
+  @if ($line-height!=null) {
+    line-height: $line-height;
+  }
+}
+//画三角形
+@mixin triangle($width:10px,$direction:top,$color:blue) {
+  width: $width;
+  border: $width solid transparent;
+  border-#{$direction}-color:$color;
+}
+//元素内容居中
+@mixin center {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+//按钮样式
+@mixin btn-common($border-radius:5px,$bg:crimson){
+  border: 0;
+  border-radius: $border-radius;
+  background-color: $bg;
+  color: white;
+}
+@mixin border {
+  box-shadow:0px 0px 6px 0px rgba(253,55,100,0.27);
+  border-radius:10px;
+}
+//定位居中
+@mixin setCenter {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+//水平对齐
+@mixin  stayInline {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+//字号和颜色
+@mixin commonFont($size:15px,$color:black){
+  font-size: $size;
+  color: $color;
+}

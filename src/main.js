@@ -29,7 +29,7 @@ new Vue({
  * */
 router.beforeEach((to, from, next) => {
   if(to.meta.name){
-    document.title = to.meta.name
+    document.title = to.meta.name;
   }
   next()
 })

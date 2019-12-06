@@ -119,7 +119,7 @@ export function getQueryStringV(vhref, name) {
         paraValue = parameters[i].substring(pos + 1);
 
         if (paraName == name) {
-            return parseInt(unescape(paraValue.replace(/\+/g, " ")));
+            return unescape(paraValue.replace(/\+/g, " "));
         }
     }
     return '';

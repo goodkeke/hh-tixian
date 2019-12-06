@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { Toast } from 'vant';
-import { encryptBy, decryptBy, callMd5 } from "@/plugins/extension";
+import { encryptBy, decryptBy, callMd5,getQueryStringV } from "@/plugins/extension";
 import Qs from 'qs'
+import router from '../router'
 
 // 创建axios实例
 const service = axios.create({
@@ -24,7 +25,8 @@ service.interceptors.request.use(config => {
     let t = Date.parse(new Date());       //时间戳
 
     let fString = appKey + "&" + t + "&" + data;
-    let token = sessionStorage.token? sessionStorage.token : ''
+    let token = sessionStorage.token || getQueryStringV(window.location.href,'token');
+    console.log(getQueryStringV(window.location.href,'token'))
     let sign = encryptBy(fString, SEEDMD5);
     let newParams = {
         data,
@@ -73,9 +75,12 @@ service.interceptors.response.use(response => {
     } else if (resData.retType !== 1 && resData.retType !== '1') {
         // const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g')
         Toast.fail(resData.retMsg  ? resData.retMsg : '服务器异常，请稍后再试');
-        // return Promise.reject(new Error('error'))
+        // router.replace({
+        //     path: 'home',
+        //     query: {redirect: router.currentRoute.fullPath}
+        // });
         return {
-            success: false
+            resData
         }
     } else {
         return {

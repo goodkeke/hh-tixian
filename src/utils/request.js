@@ -14,7 +14,6 @@ const appKey = 'cb6015828a44b5234ce9ed1c3bc7acb0';
 const SEEDMD5 = callMd5(requestKey);
 // request拦截器
 service.interceptors.request.use(config => {
-
     // @如果启用mock则使用mock地址
     if( process.env.VUE_APP_MOCK === 'true'){
         return config;
@@ -25,12 +24,14 @@ service.interceptors.request.use(config => {
     let t = Date.parse(new Date());       //时间戳
 
     let fString = appKey + "&" + t + "&" + data;
+    let token = sessionStorage.token? sessionStorage.token : ''
     let sign = encryptBy(fString, SEEDMD5);
     let newParams = {
         data,
         appKey,
         t,
         sign,
+        token
     }
     config.data = Qs.stringify(newParams);
 

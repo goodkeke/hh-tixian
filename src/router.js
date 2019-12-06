@@ -34,7 +34,16 @@ export const asyncRouterMap = [
                     name: '呼哈商务合作计划'
                 },
                 component: () => import('./views/cooperation/index.vue')
+            },
+            {
+                path: 'drawPost',
+                name: 'drawPost',
+                meta: {
+                    name: '推广素材'
+                },
+                component: () => import('./views/drawPost/index.vue')
             }
+        
         ]
     }
 ]

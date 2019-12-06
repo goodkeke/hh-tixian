@@ -5,7 +5,8 @@
 const apiList = {
     getCode:`me.huha.platform.message.service.SmsCodeService.send/v1.0.0`,
     register:`me.huha.platform.api.service.UserInfoService.registered/v1.0.0`,
-    cooperation: `me.huha.platform.operation.service.BusinessPartnerService.insertBusinessPartner/v1.0.0`
+    cooperation: `me.huha.platform.operation.service.BusinessPartnerService.insertBusinessPartner/v1.0.0`,
+    sendInvite: `me.huha.platform.api.service.ShareService.sendInvite/v1.0.0`
 }
 
 export default  apiList

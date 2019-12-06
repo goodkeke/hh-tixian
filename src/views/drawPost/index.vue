@@ -123,7 +123,7 @@
                            this.posterUrl2 = canvas.toDataURL("image/png");
                        }
                    });
-               },800)
+               },2000)
             },
             async draw(element, index) {
                 setTimeout(() => {

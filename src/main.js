@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router'
 import tools from './utils/index'
+import bridge from './utils/bridge'
 import './style/index.scss'
 import './plugins/extension'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
@@ -20,6 +21,7 @@ Vue.use(Field);
 
 Vue.config.productionTip = true;
 Vue.prototype.tools = tools;
+Vue.prototype.bridge = bridge;
 new Vue({
   router,
   render: h => h(App),

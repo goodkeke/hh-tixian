@@ -87,11 +87,11 @@
   }
 }
 //画三角形
-@mixin triangle($width:10px,$direction:top,$color:blue) {
-  width: $width;
-  border: $width solid transparent;
-  border-#{$direction}-color:$color;
-}
+@mixin angle-down($left:12px,$top:18px,$color:#333333,$direction:top) {
+		border-left: $left solid transparent;
+		border-right: $left solid transparent;
+		border-#{$direction}:$top solid $color;
+	}
 //元素内容居中
 @mixin center {
   align-items: center;

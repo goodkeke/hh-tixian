@@ -29,11 +29,10 @@ new Vue({
 /*
  * @动态改变页面标题
  * */
-router.beforeEach((to, from, next) => {
+router.afterEach((to, from) => {
   if(to.meta.name){
     document.title = to.meta.name;
   }
-  next()
 })
 
 

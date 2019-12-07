@@ -103,10 +103,17 @@ export function getQueryStringV(vhref, name) {
     if (vhref.indexOf('?') == -1 || vhref.indexOf(name + '=') == -1) {
         return '';
     }
+	// console.log(vhref.substring(vhref.indexOf('type') + 2));
     // 获取链接中参数部分
     let queryString = vhref.substring(vhref.indexOf('?') + 1);
+	//二次判断如果还有问号继续分割一次
+	if(queryString.indexOf('?' > -1)){
+		queryString = queryString.substring(queryString.indexOf('?') + 1);
+	}
+	// console.log(queryString)
     // 分离参数对 ?key=value&key2=value2
     let parameters = queryString.split('&');
+	
     let pos, paraName, paraValue;
     for (let i = 0; i < parameters.length; i++) {
         // 获取等号位置
@@ -117,7 +124,6 @@ export function getQueryStringV(vhref, name) {
         // 获取name 和 value
         paraName = parameters[i].substring(0, pos);
         paraValue = parameters[i].substring(pos + 1);
-
         if (paraName == name) {
             return unescape(paraValue.replace(/\+/g, " "));
         }

@@ -243,6 +243,7 @@
        async mounted() {
             this.tab = parseInt(this.$route.params.id) ? parseInt(this.$route.params.id) : 1;
             let urlMehtod = getQueryStringV(window.location.href,'type');
+			console.log(urlMehtod)
             this.setPageTitle(urlMehtod||this.tab);
             this.getInviteCode()
         },
@@ -253,11 +254,11 @@
             setPageTitle(n){
                 this.tab = n;
                 let point = document.getElementsByClassName('swiper-pagination-bullet');
-                if(n === 1){
+                if(n == 1){
                     this.potinIndex = 0;
-                }else if( n === 2){
+                }else if( n == 2){
                     this.potinIndex = 3
-                }else if(n === 3){
+                }else if(n == 3){
                     this.potinIndex = 6
                 }else if(n == 4){
                     this.potinIndex = 10

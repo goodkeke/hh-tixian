@@ -15,7 +15,7 @@
                 </div>
                 <div class="input-item">
                         <input type="text" v-model="form.smCode" ref="form"  placeholder="请输入验证码" maxlength="6">
-                        <button class="btn-code" @click="sendSMS" :class="{'disabled': !btnValible}">{{buttonName}}</button>
+                        <button class="btn-code" @click="validator" :class="{'disabled': !btnValible}">{{buttonName}}</button>
                 </div>
                 <div class="input-item">
                     <input type="password" v-model="form.password"  placeholder="请输入6位数字密码" maxlength="6">
@@ -62,6 +62,7 @@
                 btnValible: true,
                 isShow: false,
                 second: 60,
+				phoneAvailable: false,
                 form:{
                     phone: '',
                     smCode: '',
@@ -75,8 +76,8 @@
             'form.password':{
                     handler (value){
                         if(!this.tools.isNumber(value)){
-                            Toast('密码只能为6位数字')
-                            this.form.password = ''
+                            Toast('密码只能为6位数字');
+                            this.form.password = '';
                         }
                     }
             },
@@ -85,17 +86,30 @@
             this.form.invitationCode = localStorage.getItem('inviteCode');
         },
         methods:{
-           async sendSMS(){
+		   
+		 async phoneCheck(){
+			    const res = await commonApi({phone:this.form.phone},'checkPhone','post');
+				if(!res.data){
+					this.sendMsg();
+				}else{
+					Toast('手机号已被注册');
+				}
+		   },
+           async validator(){
                if(!this.tools.isPhoneNumber(this.form.phone)){
                    Toast('请输入正确的手机号码');
+				   return;
                }else if(this.btnValible){
-                   let res = await commonApi({sc: 'register',phone:this.form.phone},'getCode','post');
-                   res.retType == 1 && Toast('发送成功');
-                   if(res.success){
-                       this.timer();
-                   }
+                   this.phoneCheck();
                }
             },
+			async sendMsg(){
+				let res = await commonApi({sc: 'register',phone:this.form.phone},'getCode','post');
+				res.retType == 1 && Toast('发送成功');
+				if(res.success){
+					this.timer();
+				}	
+			},
             timer () {
                 let result = setInterval(()=>{
                     this.second--;
@@ -110,7 +124,6 @@
                     }
                 }, 1000);
             },
-            
             onSubmit:_debounce(function(){
                if(this.tools.isNull(this.form.phone)){
                     Toast('请输入手机号码');
@@ -132,6 +145,7 @@
             },
             closeWin() {
                 this.isShow = false;
+				location.href = location.href;
             }
         }
     }

@@ -42,16 +42,16 @@
             </div>
             <div class="side-bar">
                 <ul>
-                    <li :class="{'tab-active' : tab === 'home'}" @click="tab = 1,setPageTitle(1)">
+                    <li :class="{'tab-active' : tab === 'home'}" @click="tab = 1,setPage(1)">
                         呼哈城市
                     </li>
-                    <li :class="{'tab-active' : tab === 'bluePage'}" @click="tab = 2,setPageTitle(2)">
+                    <li :class="{'tab-active' : tab === 'bluePage'}" @click="tab = 2,setPage(2)">
                         商家招募
                     </li>
-                    <li :class="{'tab-active' : tab === 'orangePage'}" @click="tab = 3,setPageTitle(3)">
+                    <li :class="{'tab-active' : tab === 'orangePage'}" @click="tab = 3,setPage(3)">
                         赚钱联盟
                     </li>
-                    <li class="tab-active" @click="tab = 4,setPageTitle(4)">
+                    <li class="tab-active" @click="tab = 4,setPage(4)">
                         城市代理
                     </li>
                 </ul>
@@ -110,10 +110,9 @@
                     return  true;
                 }
             },
-            setPageTitle(n){
+            setPage(n){
                 if(n !== 4){
-                    console.log(n)
-                    this.$emit('func',n)
+                    this.$emit('func',n);
                 }
             }
         }

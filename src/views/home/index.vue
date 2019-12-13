@@ -46,7 +46,7 @@
                     </div>
                     <div class="red-page-foot-3">
                         <img src="~@/assets/images/page-1/3/3-2.png" alt="">
-                        <img src="~@/assets/images/page-1/3/3-2.png" alt="">
+                        <img src="~@/assets/images/page-1/3/3-3.png" alt="">
                     </div>
                 </swiper-slide>
 
@@ -243,7 +243,6 @@
        async mounted() {
             this.tab = parseInt(this.$route.params.id) ? parseInt(this.$route.params.id) : 1;
             let urlMehtod = getQueryStringV(window.location.href,'type');
-			console.log(urlMehtod)
             this.setPageTitle(urlMehtod||this.tab);
             this.getInviteCode()
         },
@@ -252,7 +251,8 @@
                 localStorage.setItem('inviteCode',getQueryStringV(window.location.href,'inviteCode'));
             },
             setPageTitle(n){
-                this.tab = n;
+                console.log(n)
+                this.tab = parseInt(n);
                 let point = document.getElementsByClassName('swiper-pagination-bullet');
                 if(n == 1){
                     this.potinIndex = 0;

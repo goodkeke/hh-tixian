@@ -26,7 +26,6 @@ service.interceptors.request.use(config => {
 
     let fString = appKey + "&" + t + "&" + data;
     let token = sessionStorage.token || getQueryStringV(window.location.href,'token');
-    console.log(getQueryStringV(window.location.href,'token'))
     let sign = encryptBy(fString, SEEDMD5);
     let newParams = {
         data,

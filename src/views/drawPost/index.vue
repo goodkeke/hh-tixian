@@ -10,7 +10,7 @@
 				</div>
 				<img class="bg" @click="saveImages(posterUrl1)" v-else :src="posterUrl1" />
 			</div>
-			<div class="download-text tag-up">{{this.tools.isWeiXin()?'长按保存图片':'长按下载'}}，A4纸黑白打印低成本物料</div>
+			<div class="download-text tag-up">{{isInBrowser ? '长按保存图片':'点击图片下载'}}，A4纸黑白打印低成本物料</div>
 			<div class="download-desc">到店 → 简易介绍 → 放下传单 → 下一家</div>
 			<div class="download-desc-2">打印100份放包里，每个商家五分钟，再来两次加深印象。商家扫码注册，这个客户永远都是你的！</div>
 		</div>
@@ -24,11 +24,11 @@
 				</div>
 				<img class="bg" @click="saveImages(posterUrl2)" v-else :src="posterUrl2" />
 			</div>
-			<div class="download-text tag-up">{{this.tools.isWeiXin()?'长按保存图片':'长按下载'}}，用于发微信好友及朋友圈等</div>
+			<div class="download-text tag-up">{{isInBrowser ? '长按保存图片':'点击图片下载'}}，用于发微信好友及朋友圈等</div>
 		</div>
 		<div class="block-gray"></div>
 		<div class="section section-three">
-			<div class="tag tag-down">邀请商家电子海报</div>
+			<div class="tag tag-down">电子海报-给商家或朋友</div>
 			<div class="main" :class="{'scroll-box': isDone}">
 				<div class="cell" v-for="(item,index) in  imgData3.images" :key="index">
 					<div class="canvas" :id="poster3[index].id">
@@ -39,7 +39,7 @@
 				</div>
 				<div class="block"></div>
 			</div>
-			<div class="download-text tag-up">{{this.tools.isWeiXin()?'长按保存图片':'长按下载'}} ，用于发微信好友及朋友圈等<br />请根据您的社交圈特色自主选择</div>
+			<div class="download-text tag-up">{{isInBrowser?'长按保存图片':'点击图片下载'}} ，用于发微信好友及朋友圈等<br />请根据您的社交圈特色自主选择</div>
 		</div>
 		<!-- 查看大图 -->
 		<div class="back-drop" v-show="popupShow" style="background:#000000;" @click="popupShow=false"></div>
@@ -85,20 +85,26 @@
 				poster3: [],
 				posterUrl3: [],
 				posts: [],
-				postType : {
+				postType: {
 					'alliance_posterA': {
-						name:'poster1',
-						img:'imgData1'
+						name: 'poster1',
+						img: 'imgData1'
 					},
 					'alliance_posterB': {
-						name:'poster2',
-						img:'imgData2'
+						name: 'poster2',
+						img: 'imgData2'
 					},
 
 				}
 			}
 		},
 		created() {},
+		computed:{
+			isInBrowser(){
+				let state = this.tools.isWeiXin() ? true : false;
+				return state
+			}
+		},
 		async mounted() {
 			await this.sendInviteFn('alliance_posterA');
 			await this.sendInviteFn('alliance_posterB');
@@ -126,15 +132,15 @@
 				let poster = document.getElementById(element); //海报
 				let obj = {
 					'poster1': {
-						img:'posterUrl1',
-						config:{
+						img: 'posterUrl1',
+						config: {
 							useCORS: true,
 							allowTaint: true,
 						}
 					},
 					'poster2': {
-						img:'posterUrl2',
-						config:{
+						img: 'posterUrl2',
+						config: {
 							useCORS: true,
 							allowTaint: true,
 							windowWidth: poster.scrollWidth,
@@ -143,20 +149,19 @@
 					},
 				}
 				let config = obj[element] ? obj[element].config : obj['poster2'].config;
-				let timer = obj[element] ? 2000:1000;
+				let timer = obj[element] ? 2000 : 1000;
 				setTimeout(() => {
 					html2canvas(poster, config).then(canvas => {
-						if(obj[element]){
+						if (obj[element]) {
 							this[element] = false;
 							this[obj[element].img] = canvas.toDataURL("image/png");
-						}else{
-							let imgUrl = canvas.toDataURL("image/png")
+						} else {
+							let imgUrl = canvas.toDataURL("image/png");
 							this.posts.push(imgUrl);
 							document.getElementById(element).firstElementChild.src = imgUrl;
 							this.finished();
-							console.log('============ finished')
 						}
-						
+
 					});
 				}, timer)
 			},
@@ -185,7 +190,7 @@
 								this.draw2('poster3' + index)
 							}, 500)
 						})
-					}else{
+					} else {
 						this[this.postType[type].img] = data.data;
 						this.draw2(this.postType[type].name);
 					}
@@ -198,6 +203,7 @@
 </script>
 <style scoped lang="scss">
 	@import '~@/style/mixin';
+
 	.mask {
 		position: fixed;
 		height: 100%;
@@ -205,6 +211,7 @@
 		background: rgba(51, 51, 51, .7);
 		z-index: 100;
 		$size: 50px;
+
 		.text {
 			color: white;
 			width: 150px;
@@ -323,33 +330,36 @@
 		}
 
 		.section {
-			.tag-down{
-				&::after{
+			.tag-down {
+				&::after {
 					content: '';
 					display: block;
 					@include angle-down();
 					position: absolute;
-					bottom:5px;
+					bottom: 5px;
 					margin-left: -10px;
 					left: 50%;
 					border-radius: 3px;
-				
+
 				}
 			}
-			.tag-up{
+
+			.tag-up {
 				margin-top: 10px;
 				padding-top: 10px;
-				&:after{
+
+				&:after {
 					content: '';
 					display: block;
 					position: absolute;
-					top:-10px;
+					top: -10px;
 					margin-left: -10px;
 					left: 50%;
 					border-radius: 3px;
-					@include angle-down(12px,18px,#333333,bottom);
+					@include angle-down(12px, 18px, #333333, bottom);
 				}
 			}
+
 			.tag {
 				position: relative;
 				color: #333;
@@ -358,8 +368,9 @@
 				text-align: center;
 				padding: 10px 0;
 				padding-bottom: 30px;
-				
+
 			}
+
 			.download-text {
 				color: #2196F3;
 				font-size: 16px;
@@ -375,6 +386,7 @@
 				margin-bottom: 10px;
 				font-weight: bold;
 			}
+
 			.download-desc-2 {
 				padding: 0 30px;
 				font-size: 14px;

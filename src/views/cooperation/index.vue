@@ -85,16 +85,12 @@
                 ]
             }
         },
-        mounted(){
-
-        },
         methods: {
             async onSubmit(){
                 if(this.checkForm()){
                     let res = await commonApi(this.form,'cooperation','post');
                     res.retType === 1 && Toast('提交成功')
                 }
-
             },
             checkForm(){
                 if(this.form.phone == '' || !this.tools.isPhoneNumber(this.form.phone)){
@@ -111,6 +107,7 @@
                 }
             },
             setPage(n){
+				console.log(n)
                 if(n !== 4){
                     this.$emit('func',n);
                 }

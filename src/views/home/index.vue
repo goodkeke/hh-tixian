@@ -208,6 +208,9 @@
                                 window.myAction(4)
                             }
                         },
+						touchEnd:function(){
+							(this.realIndex === window.startNum && window.startNum === 9) && window.myAction(4);
+						},
                         slideChange: function(){
                             window.endNum = this.realIndex;
                             if(this.realIndex <= 2){
@@ -234,7 +237,8 @@
             window.myAction = function(index){
                 _this.tab = index;
                 if(index === 4){
-                    _this.$router.push({name:'cooperation'})
+                    // _this.$router.push({name:'cooperation'})
+					_this.setPageTitle(4);
                     window.startNum = null;
                     window.endNum = null;
                 }
@@ -242,28 +246,27 @@
         },
        async mounted() {
             this.tab = parseInt(this.$route.params.id) ? parseInt(this.$route.params.id) : 1;
-            let urlMehtod = getQueryStringV(window.location.href,'type');
-            this.setPageTitle(urlMehtod||this.tab);
-            this.getInviteCode()
+            let _type = getQueryStringV(window.location.href,'type');
+            this.setPageTitle(_type||this.tab);
+            this.getInviteCode();
         },
         methods:{
             getInviteCode(){
                 localStorage.setItem('inviteCode',getQueryStringV(window.location.href,'inviteCode'));
             },
             setPageTitle(n){
-                console.log(n)
                 this.tab = parseInt(n);
                 let point = document.getElementsByClassName('swiper-pagination-bullet');
-                if(n == 1){
+                if(n === 1){
                     this.potinIndex = 0;
-                }else if( n == 2){
-                    this.potinIndex = 3
-                }else if(n == 3){
-                    this.potinIndex = 6
-                }else if(n == 4){
-                    this.potinIndex = 10
+                }else if( n === 2){
+                    this.potinIndex = 3;
+                }else if(n === 3){
+                    this.potinIndex = 6;
+                }else if(n === 4){
+                    this.potinIndex = 10;
                 }
-                n !==4  && point[this.potinIndex].click();
+                n !== 4 && point[this.potinIndex].click();
             }
         }
     }

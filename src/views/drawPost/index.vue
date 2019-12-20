@@ -469,10 +469,10 @@
 
 		.section-three {
 			.code {
-				width: 50px;
+				width: 80px;
 				position: absolute;
-				bottom: 40px;
-				right: 65px;
+				bottom: 25px;
+				right: 45px;
 			}
 
 			.main {

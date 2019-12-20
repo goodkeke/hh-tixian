@@ -27,19 +27,18 @@
             <div class="form-bottom">
                 <p>已注册用户请点击下方按钮登录</p>
                 <div class="icon-box">
-                    <div class="icon-item">
-                        <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd">
-                        <img src="~@/assets/images/register/logo-blue.png" alt=""></a>
-                    </div>
-                    <div class="icon-item">
-                        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacity"><img src="~@/assets/images/register/logo-red.png" alt=""></a>
-                    </div>
-
-                    <div class="icon-item">
-                        <a href="http://lm.huhacity.com">
-                            <img src="~@/assets/images/register/logo-none.png" alt="">
-                        </a>
-                    </div>
+<!--                    <div class="icon-item">-->
+<!--                        <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd">-->
+<!--                        <img src="~@/assets/images/register/logo-blue.png" alt=""></a>-->
+<!--                    </div>-->
+<!--                    <div class="icon-item">-->
+<!--                        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacity"><img src="~@/assets/images/register/logo-red.png" alt=""></a>-->
+<!--                    </div>-->
+<!--                    <div class="icon-item">-->
+<!--                        <a href="http://lm.huhacity.com">-->
+<!--                            <img src="~@/assets/images/register/logo-none.png" alt="">-->
+<!--                        </a>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -60,7 +59,7 @@
             return {
                 buttonName: '获取验证码',
                 btnValible: true,
-                isShow: false,
+                isShow:  false,
                 second: 60,
 				phoneAvailable: false,
                 form:{

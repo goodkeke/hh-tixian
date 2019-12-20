@@ -42,17 +42,8 @@
             </div>
             <div class="side-bar">
                 <ul>
-                    <li :class="{'tab-active' : tab === 'home'}" @click="tab = 1,setPage(1)">
-                        呼哈城市
-                    </li>
-                    <li :class="{'tab-active' : tab === 'bluePage'}" @click="tab = 2,setPage(2)">
-                        商家招募
-                    </li>
-                    <li :class="{'tab-active' : tab === 'orangePage'}" @click="tab = 3,setPage(3)">
-                        赚钱联盟
-                    </li>
-                    <li class="tab-active" @click="tab = 4,setPage(4)">
-                        城市代理
+                    <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="tab = item.id,setPage(item.id)">
+                        {{item.name}}
                     </li>
                 </ul>
             </div>
@@ -77,37 +68,36 @@
                     provice:'',
                     type:'huhaAllianceH5'
                 },
-                names: [
-                    'home',
-                    'bluePage',
-                    'orangePage',
-                    'cooperation'
-                ]
+                tabs: [
+                    {id: 1, name: '呼哈城市'},
+                    {id: 2, name: '商家招募'},
+                    {id: 3, name: '赚钱联盟'},
+                    {id: 4, name: '城市代理'}
+                ],
             }
         },
         methods: {
             async onSubmit(){
                 if(this.checkForm()){
                     let res = await commonApi(this.form,'cooperation','post');
-                    res.retType === 1 && Toast('提交成功')
+                    res.retType === 1 && Toast('提交成功');
                 }
             },
             checkForm(){
                 if(this.form.phone == '' || !this.tools.isPhoneNumber(this.form.phone)){
-                    Toast('请正确填写手机号码')
+                    Toast('请正确填写手机号码');
                     return false;
                 }else if(this.form.name == ''){
-                    Toast('姓名不能为空')
+                    Toast('姓名不能为空');
                     return false;
                 }else if(this.form.provice == ''){
-                    Toast('省份不能为空')
+                    Toast('省份不能为空');
                     return false;
                 }else{
                     return  true;
                 }
             },
             setPage(n){
-				console.log(n)
                 if(n !== 4){
                     this.$emit('func',n);
                 }

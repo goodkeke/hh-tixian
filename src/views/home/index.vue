@@ -3,17 +3,8 @@
         <menu-bar></menu-bar>
         <div class="side-bar" v-show="potinIndex !== 10">
             <ul>
-                <li :class="{'tab-active' : tab === 1}" @click="tab = 1,setPageTitle(1)">
-                    呼哈城市
-                </li>
-                <li :class="{'tab-active' : tab === 2}" @click="tab = 2,setPageTitle(2)">
-                    商家招募
-                </li>
-                <li :class="{'tab-active' : tab === 3}" @click="tab = 3,setPageTitle(3)">
-                    赚钱联盟
-                </li>
-                <li :class="{'tab-active' : tab === 4}" @click="tab = 4,setPageTitle(4)">
-                    城市代理
+                <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="tab = item.id,setPageTitle(item.id)">
+                    {{item.name}}
                 </li>
             </ul>
         </div>
@@ -65,6 +56,17 @@
                     <p class="last-title">无需商品线上售卖，可单选微社区 有商品售卖需求，大可双管齐下</p>
                 </div>
             </swiper-slide>
+            <swiper-slide style="height: 100%;background-color: antiquewhite" class="swiper-item tab-2-3">
+                <!-- <div class="blue-head">
+                      <img src="~@/assets/images/page-2/head-2.png" alt="">
+                  </div> -->
+
+                <div class="blue-page-middle-3">
+                    <img src="~@/assets/images/page-2/3/2-2-1.png" alt="">
+                    <img src="~@/assets/images/page-2/3/2-2-0.png" alt="">
+                    <img src="~@/assets/images/page-2/3/2-2-2.png" alt="">
+                </div>
+            </swiper-slide>
             <swiper-slide style="height: 100%;background-color: green" class="swiper-item tab-2-2">
                 <!-- <div class="blue-head">
                     <img src="~@/assets/images/page-2/head-2.png" alt="">
@@ -72,32 +74,20 @@
                -->
                 <div class="blue-page-middle-2">
                     <img src="~@/assets/images/page-2/2/2-1.png" alt="">
+                    <p style="color:white">带动你的生意·再通过人脉多赚一份钱</p>
                 </div>
                 <div class="red-page-foot-3">
                   <img src="~@/assets/images/page-2/2/2-2.png" alt="">
                   <img src="~@/assets/images/page-2/2/2-3.png" alt="">
-                    <div class="page-2-2-foot">
-                        <img src="~@/assets/images/page-2/2/2-2-4.png" alt="">
-                        <div class="foot">
-                            <p>有了小号和红卡，锁定老客户！即使平台上只有一个商家，也能盘活生意，带动生意</p>
-                        </div>
-                    </div>
+<!--                    <div class="page-2-2-foot">-->
+<!--                        <img src="~@/assets/images/page-2/2/2-2-4.png" alt="">-->
+<!--                        <div class="foot">-->
+<!--                            <p>有了小号和红卡，锁定老客户！即使平台上只有一个商家，也能盘活生意，带动生意</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
-            </swiper-slide>
-            <swiper-slide style="height: 100%;background-color: antiquewhite" class="swiper-item tab-2-3">
-              <!-- <div class="blue-head">
-                    <img src="~@/assets/images/page-2/head-2.png" alt="">
-                </div> -->
-
-                <div class="blue-page-middle-3">
-                    <img src="~@/assets/images/page-2/3/2-2-1.png" alt="">
-                     <img src="~@/assets/images/page-2/3/2-2-0.png" alt="">
-                    <img src="~@/assets/images/page-2/3/2-2-2.png" alt="">
-                </div>
-              
                 <span class="guider">马上入驻</span>
             </swiper-slide>
-
             <swiper-slide style="height: 100%;" class="swiper-item tab-3-1 tab-3">
                 <div class="head">
                     <img src="~@/assets/images/page-3/1/head.png" alt="">
@@ -186,11 +176,11 @@
                 tab:1,
                 currentIndex:0,
                 potinIndex:0,
-                names: [
-                    'home',
-                    'bluePage',
-                    'orangePage',
-                    'cooperation'
+                 tabs: [
+                     {id: 1, name: '呼哈城市'},
+                     {id: 2, name: '商家招募'},
+                     {id: 3, name: '赚钱联盟'},
+                     {id: 4, name: '城市代理'}
                 ],
                 swiperOption: {
                     direction: 'vertical',
@@ -203,9 +193,11 @@
                         },
                         touchStart: function() {
                             window.startNum = this.realIndex;
+                            //这里设置最后一张图滑动后跳转到代理城市 9 代表所有图片的长度
                             if(this.realIndex === 9 && window.endNum == window.startNum){
                                 window.slideDown = true;
-                                window.myAction(4)
+                                //切换tab到城市代理
+                                window.myAction(4);
                             }
                         },
 						touchEnd:function(){
@@ -213,13 +205,15 @@
 						},
                         slideChange: function(){
                             window.endNum = this.realIndex;
+                            let potinIndex;
                             if(this.realIndex <= 2){
-                                window.myAction(1)
-                            }else if(this.realIndex <=5){
-                                window.myAction(2)
-                            }else if(this.realIndex <=9){
-                                window.myAction(3)
+                                potinIndex = 1;
+                            }else if(this.realIndex <= 5){
+                                potinIndex = 2;
+                            }else if(this.realIndex <= 9){
+                                potinIndex = 3;
                             }
+                            window.myAction(potinIndex);
                         },
                     },
                     pagination: {
@@ -245,27 +239,21 @@
             }
         },
        async mounted() {
-            this.tab = parseInt(this.$route.params.id) ? parseInt(this.$route.params.id) : 1;
-            let _type = getQueryStringV(window.location.href,'type');
+            this.tab = this.$route.params.id ? parseInt(this.$route.params.id) : 1;
+            let _type = getQueryStringV(location.href,'type');
             this.setPageTitle(_type||this.tab);
             this.getInviteCode();
         },
         methods:{
             getInviteCode(){
-                localStorage.setItem('inviteCode',getQueryStringV(window.location.href,'inviteCode'));
+                localStorage.setItem('inviteCode',getQueryStringV(location.href,'inviteCode'));
             },
             setPageTitle(n){
                 this.tab = parseInt(n);
+                //tab下图片索引数组
+                let points = [0, 3, 6, 10];
                 let point = document.getElementsByClassName('swiper-pagination-bullet');
-                if(n === 1){
-                    this.potinIndex = 0;
-                }else if( n === 2){
-                    this.potinIndex = 3;
-                }else if(n === 3){
-                    this.potinIndex = 6;
-                }else if(n === 4){
-                    this.potinIndex = 10;
-                }
+                this.potinIndex = points[n-1];
                 n !== 4 && point[this.potinIndex].click();
             }
         }

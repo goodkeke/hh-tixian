@@ -9,61 +9,71 @@
                 <h2>注册成功</h2>
             </div>
             <div class="dialog-body">
-                <p>请选择操作</p>
+<!--                <p>请选择操作</p>-->
                 <ul>
-                    <li>
+<!--                    <li>-->
+<!--                        <div class="box">-->
+<!--                            <p>注册商号</p>-->
+<!--                            <div class="box-item">-->
+<!--                                <div class="title-icon">-->
+<!--                                    <img src="~@/assets/images/register/logo-blue.png" alt=""> <span>呼哈城市商家版</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="box-item">-->
+<!--                                <button class="btn-small" @click="jump(1)">打开</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+                    <li style="padding:  10px 0">
                         <div class="box">
-                            <p>注册商号</p>
-                            <div class="box-item">
-                                <div class="title-icon">
-                                    <img src="~@/assets/images/register/logo-blue.png" alt=""> <span>呼哈城市商家版</span>
-                                </div>
+                            <div class="sigle-box">
+                                <img style="display: block;margin: auto;" src="~@/assets/images/register/logo-red.png" alt="">
+                                <span style="display: block;margin: auto;text-align: center;color: #333333">呼哈城市App</span>
                             </div>
-                            <div class="box-item">
-                                <button class="btn-small" @click="jump(1)">打开</button>
+                            <div class="">
+                                <button class="btn-small" style="padding: 10px 20px;margin: 10px auto;display: block;font-size:14px" @click="jump(2)">点击下载APP</button>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="box">
-                            <p>开通社区号·查看会员权限</p>
-                            <div class="box-item">
-                                <div class="title-icon">
-                                    <img src="~@/assets/images/register/logo-red.png" alt=""> <span>呼哈城市App</span>
-                                </div>
-                            </div>
-                            <div class="box-item">
-                                <button class="btn-small" @click="jump(2)">打开</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="box">
-                            <p>激活联盟号</p>
-                            <div class="box-item">
-                                <div class="title-icon">
-                                    <img src="~@/assets/images/register/logo-none.png" alt=""> <span>呼哈联盟</span>
-                                </div>
-                            </div>
-                            <div class="box-item">
-                                <button class="btn-small" @click="jump(3)">打开</button>
-                            </div>
-                        </div>
-                    </li>
+<!--                    <li>-->
+<!--                        <div class="box">-->
+<!--                            <p>开通社区号·查看会员权限</p>-->
+<!--                            <div class="box-item">-->
+<!--                                <div class="title-icon">-->
+<!--                                    <img src="~@/assets/images/register/logo-red.png" alt=""> <span>呼哈城市App</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="box-item">-->
+<!--                                <button class="btn-small" @click="jump(2)">打开</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <div class="box">-->
+<!--                            <p>激活联盟号</p>-->
+<!--                            <div class="box-item">-->
+<!--                                <div class="title-icon">-->
+<!--                                    <img src="~@/assets/images/register/logo-none.png" alt=""> <span>呼哈联盟</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="box-item">-->
+<!--                                <button class="btn-small" @click="jump(3)">打开</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
                 </ul>
             </div>
-            <div class="footer">
-                <h2>城市代理</h2>
-                <p>关注微信公众号"呼哈商机"和我们联系</p>
-                <a class="download" href="~@/assets/images/cooperation/qrCode.png" download="qrCode.png" style="display: none"></a>
-                <img id="downloadBtn" src="~@/assets/images/cooperation/qrCode.png" alt="">
-                <p>长按下载二维码</p>
-            </div>
+<!--            <div class="footer">-->
+<!--                <h2>城市代理</h2>-->
+<!--                <p>关注微信公众号"呼哈商机"和我们联系</p>-->
+<!--                <a class="download" href="~@/assets/images/cooperation/qrCode.png" download="qrCode.png" style="display: none"></a>-->
+<!--                <img id="downloadBtn" src="~@/assets/images/cooperation/qrCode.png" alt="">-->
+<!--                <p>长按下载二维码</p>-->
+<!--            </div>-->
         </div>
     </div>
 </template>
 <script>
-     import { holdTodonwLoad } from '@/plugins/extension'
     export default {
         name: "dialogWindow",
         data (){
@@ -74,7 +84,6 @@
             }
         },
         mounted(){
-          //  holdTodonwLoad('download')
         },
         methods:{
             closeWin(){
@@ -82,12 +91,20 @@
             },
             jump(num){
                 let links = ['https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd','http://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacity','http://lm.huhacity.com']
-                window.location.href = links[num-1];
+                location.href = links[num-1];
             },
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
+    .dialog-win{
+        padding: 40px 20px !important;
+        .dialog-title{
+            margin-top: -20px !important;
+            margin-bottom: 10px;
+        }
+    }
+
     .footer{
         padding: 10px;
         margin-top: 10px;
@@ -106,7 +123,7 @@
     }
     .btn-small{
         border: 0;
-        background-color: #F82744;
+        background-color: #E4061B ;
         font-size: 12px;
         border-radius: 20px;
         padding: 5px 20px;

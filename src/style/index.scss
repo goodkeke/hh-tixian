@@ -97,7 +97,7 @@ body{
 }
 .dialog-win{
   img{
-    width: 20vw;
+    width: 64px;
   }
   .footer{
     h2,p{
@@ -180,7 +180,7 @@ body{
   .dialog-title{
     padding: 5px;
     text-align: center;
-    border-bottom: 1px solid #EEEEEE;
+    //border-bottom: 1px solid #EEEEEE;
     img{
       width: 28px;
       height: 28px;
@@ -513,6 +513,12 @@ body{
       img{
         width: 288px;
         margin-top: 8px;
+        &:first-child{
+          width: 320px;
+        }
+        &:last-child{
+          margin-top: 40px;
+        }
       }
       p{
         @include commonFont(12px,white);
@@ -522,11 +528,15 @@ body{
     }
     .blue-page-middle-2{
       margin-top: 40px;
+      margin-left: 30px;
       margin-bottom: 20px;
+      p{
+        padding-left: 14px;
+      }
       img{
         width: 266px;
       }
-      margin-left: 30px;
+
 
     }
     .blue-head{

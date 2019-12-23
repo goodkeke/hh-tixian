@@ -40,7 +40,6 @@
                         <img src="~@/assets/images/page-1/3/3-3.png" alt="">
                     </div>
                 </swiper-slide>
-
             <swiper-slide style="height: 100%;background-color: red" class="swiper-item tab-2-1">
                 <div class="blue-head">
                     <img src="~@/assets/images/page-2/head-2.png" alt="">
@@ -53,14 +52,13 @@
                        <img src="~@/assets/images/page-2/1/2-2.png" alt="">
                        <img src="~@/assets/images/page-2/1/2-3.png" alt="">
                     </div>
-                    <p class="last-title">无需商品线上售卖，可单选微社区 有商品售卖需求，大可双管齐下</p>
+                    <!-- <p class="last-title">无需商品线上售卖，可单选微社区 有商品售卖需求，大可双管齐下</p> -->
                 </div>
             </swiper-slide>
             <swiper-slide style="height: 100%;background-color: antiquewhite" class="swiper-item tab-2-3">
                 <!-- <div class="blue-head">
                       <img src="~@/assets/images/page-2/head-2.png" alt="">
                   </div> -->
-
                 <div class="blue-page-middle-3">
                     <img src="~@/assets/images/page-2/3/2-2-1.png" alt="">
                     <img src="~@/assets/images/page-2/3/2-2-0.png" alt="">
@@ -108,6 +106,7 @@
                     <img src="~@/assets/images/page-3/1/head.png" alt="">
                 </div>
                 <div class="sub-title">
+                    <h2 id="title-3-3" style="">善用人脉·逛逛街</h2>
                     <img src="~@/assets/images/page-3/3/title-x.png" alt="">
                 </div>
                 <div class="middle">
@@ -123,7 +122,7 @@
                     <img src="~@/assets/images/page-3/1/head.png" alt="">
                 </div>
                 <div class="sub-title">
-                    <img  src="~@/assets/images/page-3/3/title-x.png" alt="">
+                    <img  src="~@/assets/images/page-3/3/3-3-1.png" alt="">
                 </div>
                 <div class="middle-text">
                     <p>邀请好友注册呼哈，即可获得终身关联奖励： 关联金额每满 <i>100元</i>获得一次呼哈币奖励。 </p>

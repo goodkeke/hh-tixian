@@ -21,7 +21,10 @@
         name: "sidBar",
         props:{
             tab:{
-                default:'home',
+                type: String,
+                default: function(){
+                    return 'home'
+                },
             }
         },
         data(){

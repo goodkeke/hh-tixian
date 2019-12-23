@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="form-bottom">
-                <p>已注册用户请点击下方按钮登录</p>
+                <!-- <p>已注册用户请点击下方按钮登录</p> -->
                 <div class="icon-box">
 <!--                    <div class="icon-item">-->
 <!--                        <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd">-->

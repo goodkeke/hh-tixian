@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <transition name='fade'>
-        <dialog-window @closeWindow="closeWin" v-show="isShow"></dialog-window>
+        <dialog-window @closeWindow="closeWin" @openDrop="opendrop" v-show="isShow"></dialog-window>
         </transition>
         <div class="form">
             <div class="form-top">
@@ -42,6 +42,9 @@
                 </div>
             </div>
         </div>
+        <div class="drop" @click="closeDrop" v-if="isDrop">
+            <img src="~@/assets/images/register/drop_icon.png"/>
+        </div>
     </div>
 </template>
 <script>
@@ -67,7 +70,8 @@
                     smCode: '',
                     password: '',
                     invitationCode: ''
-                }
+                },
+                isDrop: false
             }
         },
         watch: {
@@ -145,6 +149,12 @@
             closeWin() {
                 this.isShow = false;
 				location.href = location.href;
+            },
+            opendrop () {
+                this.isDrop = true
+            },
+            closeDrop () {
+                this.isDrop = false
             }
         }
     }
@@ -249,6 +259,21 @@
                 width: 87px;
                 height: 89px;
             }
+        }
+    }
+    .drop {
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        img {
+            width: 300px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
         }
     }
 }

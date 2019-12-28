@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <transition name='fade'>
-        <dialog-window @closeWindow="closeWin" @openDrop="opendrop" v-show="isShow"></dialog-window>
+<!--        <dialog-window @closeWindow="closeWin" @openDrop="opendrop" v-show="isShow"></dialog-window>-->
         </transition>
         <div class="form">
             <div class="form-top">
@@ -42,9 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="drop" @click="closeDrop" v-if="isDrop">
-            <img src="~@/assets/images/register/drop_icon.png"/>
-        </div>
+
     </div>
 </template>
 <script>
@@ -53,11 +51,9 @@
     import {commonApi} from "@/api";
     import { clearTimeout, setTimeout } from 'timers';
     import {_debounce} from '@/plugins/extension'
+    import {getQueryStringV} from "@/plugins/extension";
     export default {
         name: "register",
-        components: {
-            dialogWindow
-        },
         data(){
             return {
                 buttonName: '获取验证码',
@@ -86,11 +82,12 @@
             },
         },
         mounted(){
-            this.form.invitationCode = localStorage.getItem('inviteCode');
+            if(!localStorage.getItem('inviteCode')){
+                this.form.invitationCode = getQueryStringV(location.href,'inviteCode') ? getQueryStringV(location.href,'inviteCode'):localStorage.getItem('inviteCode');
+            }
         },
         methods:{
-		   
-		 async phoneCheck(){
+		    async phoneCheck(){
 			    const res = await commonApi({phone:this.form.phone},'checkPhone','post');
 				if(!res.data){
 					this.sendMsg();
@@ -142,20 +139,14 @@
             },500),
            async register(){
                let res = await commonApi(this.form,'register','post');
-               if(res.retType == 1){
-                   this.isShow = true;
+               if(res.retType === 1){
+                   this.$router.push('/download')
                }
             },
             closeWin() {
                 this.isShow = false;
-				location.href = location.href;
+				window.location.href = window.location.href;
             },
-            opendrop () {
-                this.isDrop = true
-            },
-            closeDrop () {
-                this.isDrop = false
-            }
         }
     }
 </script>
@@ -261,20 +252,6 @@
             }
         }
     }
-    .drop {
-        background: rgba(0,0,0,0.5);
-        position: fixed;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-        z-index: 999;
-        img {
-            width: 300px;
-            position: absolute;
-            right: 15px;
-            top: 15px;
-        }
-    }
+
 }
 </style>

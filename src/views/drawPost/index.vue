@@ -343,7 +343,6 @@
 
 				}
 			}
-
 			.tag-up {
 				margin-top: 10px;
 				padding-top: 10px;
@@ -359,7 +358,6 @@
 					@include angle-down(12px, 18px, #333333, bottom);
 				}
 			}
-
 			.tag {
 				position: relative;
 				color: #333;

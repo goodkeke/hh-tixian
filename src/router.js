@@ -42,6 +42,13 @@ export const asyncRouterMap = [
                     name: '推广素材'
                 },
                 component: () => import('./views/drawPost/index.vue')
+            },{
+            path: '/download',
+            name: 'download',
+                meta: {
+                name:'APP下载'
+                },
+                component: () => import('./components/dialog/index.vue')
             }
         
         ]

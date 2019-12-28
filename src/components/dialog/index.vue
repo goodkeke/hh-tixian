@@ -2,8 +2,11 @@
     <div>
         <div class="mask">
         </div>
+        <div class="drop" @click="openGuider = false" v-if="openGuider">
+            <img src="~@/assets/images/register/drop_icon.png"/>
+        </div>
         <div class="dialog-win">
-            <img @click="closeWin" class="close-window" src="~@/assets/images/dialog/icon-close.png" alt="">
+<!--            <img @click="closeWin" class="close-window" src="~@/assets/images/dialog/icon-close.png" alt="">-->
             <div class="dialog-title">
                 <img  src="~@/assets/images/dialog/icon-success.png" alt="">
                 <h2>注册成功</h2>
@@ -81,6 +84,7 @@
         name: "dialogWindow",
         data (){
             return {
+                openGuider: false,
                 timer:null,
                 startTime:'',
                 endTime:''
@@ -99,9 +103,9 @@
                 let links = [
                     'http://static.online.huhacity.com/huhagroup1/M00/00/A4/CgY8CF4Cti2ATRWuAe9P8xNpt-c220.apk',
                     'https://apps.apple.com/cn/app/id1099020818'
-                ]
+                ];
                 if (this.tools.isWeiXin()&&num==0) {
-                    this.$emit('openDrop');
+                    this.openGuider = true;
                 } else {
                     location.href = links[num];
                 }
@@ -150,5 +154,20 @@
         bottom: -60px;
         left: 50%;
         transform: translate(-50%,0);
+    }
+    .drop {
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        img {
+            width: 300px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
     }
 </style>

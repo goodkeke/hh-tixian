@@ -8,6 +8,7 @@
                 </div>
             </div>
             <div class="btn-box">
+                <button class="btn" @click="guide">攻略</button>
                 <button class="btn" @click="jumpToRegister">注册</button>
             </div>
         </div>
@@ -23,6 +24,9 @@
         methods:{
             jumpToRegister (){
                 this.$router.push({name:'register'})
+            },
+            guide (){
+                window.location.href = 'https://q.eqxiu.com/s/nc66XWqm';
             }
         }
     }
@@ -42,7 +46,7 @@
         @include center;
         .logo{
             display: inline-block;
-            width: 60%;
+            width: 50%;
             height: 11vh;
             vertical-align: middle;
             img{
@@ -71,10 +75,13 @@
         }
         .btn-box{
             display: inline-block;
-            width: 38%;
+            width: 48%;
             vertical-align: middle;
             text-align: right;
             margin-top: -1vh;
+            button{
+                display: inline-block;
+            }
         }
         .btn{
             @include btn-common(15px,rgba(248, 39, 68, 1));

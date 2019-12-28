@@ -450,9 +450,9 @@
 
 		.section-one {
 			.code {
-				width: 52px;
-				bottom: 56px;
-				right: 43px;
+				width: 62px;
+				bottom: 44px;
+				right: 36px;
 				position: absolute;
 			}
 		}

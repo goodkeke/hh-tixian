@@ -3,7 +3,7 @@
         <menu-bar></menu-bar>
         <div class="side-bar" v-show="potinIndex !== 10">
             <ul>
-                <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="tab = item.id,setPageTitle(item.id)">
+                <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="tab = item.id, setPageTitle(item.id)">
                     {{item.name}}
                 </li>
             </ul>

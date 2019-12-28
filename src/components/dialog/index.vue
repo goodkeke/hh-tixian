@@ -31,7 +31,10 @@
                                 <span style="display: block;margin: auto;text-align: center;color: #333333">呼哈城市App</span>
                             </div>
                             <div class="">
-                                <button class="btn-small" style="padding: 10px 20px;margin: 10px auto;display: block;font-size:14px" @click="jump(2)">点击下载APP</button>
+                                <!-- <button class="btn-small" style="padding: 10px 20px;margin: 10px auto;display: block;font-size:14px" @click="jump(2)">点击下载APP</button> -->
+                                <!-- 应用宝下架临时解决方案 -->
+                                 <button class="btn-small" style="padding: 10px 20px;margin: 10px auto;display: block;font-size:14px" @click="jump(0)">android下载</button>
+                                  <button class="btn-small" style="padding: 10px 20px;margin: 10px auto;display: block;font-size:14px" @click="jump(1)">ios下载</button>
                             </div>
                         </div>
                     </li>
@@ -90,8 +93,18 @@
                 this.$emit('closeWindow');
             },
             jump(num){
-                let links = ['https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd','http://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacity','http://lm.huhacity.com']
-                location.href = links[num-1];
+                // let links = ['https://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacitybd','http://a.app.qq.com/o/simple.jsp?pkgname=com.sunfun.huhacity','http://lm.huhacity.com']
+                // location.href = links[num-1];
+                //  应用宝下架临时解决方案 
+                let links = [
+                    'http://static.online.huhacity.com/huhagroup1/M00/00/A4/CgY8CF4Cti2ATRWuAe9P8xNpt-c220.apk',
+                    'https://apps.apple.com/cn/app/id1099020818'
+                ]
+                if (this.tools.isWeiXin()&&num==0) {
+                    this.$emit('openDrop');
+                } else {
+                    location.href = links[num];
+                }
             },
         }
     }
@@ -128,6 +141,7 @@
         border-radius: 20px;
         padding: 5px 20px;
         color: white;
+        min-width: 115px;
     }
     .close-window{
         width:41px ;

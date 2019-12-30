@@ -121,7 +121,6 @@
             margin-bottom: 10px;
         }
     }
-
     .footer{
         padding: 10px;
         margin-top: 10px;

@@ -84,10 +84,13 @@
         mounted(){
             if(!localStorage.getItem('inviteCode')){
                 this.form.invitationCode = getQueryStringV(location.href,'inviteCode') ? getQueryStringV(location.href,'inviteCode'):localStorage.getItem('inviteCode');
+            }else{
+                 this.form.invitationCode = localStorage.getItem('inviteCode');
             }
         },
         methods:{
 		    async phoneCheck(){
+                
 			    const res = await commonApi({phone:this.form.phone},'checkPhone','post');
 				if(!res.data){
 					this.sendMsg();
@@ -96,6 +99,7 @@
 				}
 		   },
            async validator(){
+               
                if(!this.tools.isPhoneNumber(this.form.phone)){
                    Toast('请输入正确的手机号码');
 				   return;
@@ -138,6 +142,7 @@
                 }
             },500),
            async register(){
+               console.log(this.form);
                let res = await commonApi(this.form,'register','post');
                if(res.retType === 1){
                    this.$router.push('/download')

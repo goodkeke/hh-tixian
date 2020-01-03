@@ -42,7 +42,7 @@
             </div>
             <div class="side-bar">
                 <ul>
-                    <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="tab = item.id,setPage(item.id)">
+                    <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : index === 3}" @click="setPage(item.id)">
                         {{item.name}}
                     </li>
                 </ul>
@@ -84,13 +84,13 @@
                 }
             },
             checkForm(){
-                if(this.form.phone == '' || !this.tools.isPhoneNumber(this.form.phone)){
+                if(!this.form.phone || !this.tools.isPhoneNumber(this.form.phone)){
                     Toast('请正确填写手机号码');
                     return false;
-                }else if(this.form.name == ''){
+                }else if(!this.form.name){
                     Toast('姓名不能为空');
                     return false;
-                }else if(this.form.provice == ''){
+                }else if(!this.form.provice){
                     Toast('省份不能为空');
                     return false;
                 }else{

@@ -458,11 +458,24 @@ body{
     background-size: 130%;
   }
   .tab-2-1{
+    .text{
+      margin-top: 10px;
+      margin-left: 50px;
+      color: white;
+      font-size: 14px;
+      padding: 0;
+      p{
+        margin: 0;
+      }
+      b{
+        font-size: 22px;
+      }
+    }
     .red-page-foot-1{
       margin-top: 20px;
       margin-left: 25px;
       img{
-        width: 288px;
+        width: 313px;
         &:nth-child(2){
           margin-top: 10px;
         }
@@ -478,7 +491,7 @@ body{
       img{
         width: 250px;
       }
-      margin-left: 80px;
+      margin-left: 50px;
 
     }
     .blue-head{
@@ -489,6 +502,12 @@ body{
       margin-left: 20px;
     }
     background-size: 130%;
+    .new-title{
+      margin-left: 50px;
+      img{
+        width: 294px;
+      }
+    }
 
   }
   .tab-2-2{
@@ -505,7 +524,7 @@ body{
           margin-top: 0px;
           margin-left: 100px;
           width: 114px;
-          display: block
+          display: block;
         }
       }
       margin-top: 0;
@@ -514,10 +533,10 @@ body{
         width: 288px;
         margin-top: 8px;
         &:first-child{
-          width: 320px;
+          width: 300px;
         }
         &:last-child{
-          margin-top: 40px;
+          margin-top: 38px;
         }
       }
       p{
@@ -639,7 +658,7 @@ body{
     }
     .blue-page-middle-3{
       margin-top: 30px;
-      margin-left: 25px;
+      margin-left: 52px;
       img{
         width: 261px;
         &:nth-child(2){
@@ -647,11 +666,16 @@ body{
           width: 288px;
         }
         &:last-child{
-          width: 288px;
+          width: 323px;
           margin-top: 10px;
         }
       }
 
+    }
+    .blue-page-3-text{
+      margin-left: 50px;
+      width: 273px;
+      color: white;
     }
     .blue-head{
       img{

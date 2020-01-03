@@ -3,7 +3,7 @@
         <menu-bar></menu-bar>
         <div class="side-bar" v-show="potinIndex !== 10">
             <ul>
-                <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="tab = item.id, setPageTitle(item.id)">
+                <li v-for="(item, index) in tabs" :key="index" :class="{'tab-active' : tab === item.id}" @click="setPageTitle(item.id)">
                     {{item.name}}
                 </li>
             </ul>
@@ -41,16 +41,20 @@
                     </div>
                 </swiper-slide>
             <swiper-slide style="height: 100%;background-color: red" class="swiper-item tab-2-1">
-                <div class="blue-head">
-                    <img src="~@/assets/images/page-2/head-2.png" alt="">
+                <div class="blue-head new-title">
+                    <img src="~@/assets/images/page-2/1/head.png" alt="">
                 </div>
                 <div class="blue-page-middle-1">
                      <img src="~@/assets/images/page-2/1/2-1.png" alt="">
                 </div>
-                <div class="red-page-foot-1">
+                <div class="text">
+                    <p>商品、优惠、活动、各种对外信息</p>
+                    <p>一个全社区的“朋友圈”</p>
+                    <p>文字 + 九宫格，客户随时 <b>看</b> ！</p>
+                </div>
+                <div class="red-page-foot-1" style="margin-left: 0">
                     <div class="">
                        <img src="~@/assets/images/page-2/1/2-2.png" alt="">
-                       <img src="~@/assets/images/page-2/1/2-3.png" alt="">
                     </div>
                     <!-- <p class="last-title">无需商品线上售卖，可单选微社区 有商品售卖需求，大可双管齐下</p> -->
                 </div>
@@ -61,8 +65,15 @@
                   </div> -->
                 <div class="blue-page-middle-3">
                     <img src="~@/assets/images/page-2/3/2-2-1.png" alt="">
-                    <img src="~@/assets/images/page-2/3/2-2-0.png" alt="">
+<!--                    <img src="~@/assets/images/page-2/3/2-2-0.png" alt="">-->
                     <img src="~@/assets/images/page-2/3/2-2-2.png" alt="">
+                </div>
+                <div class="blue-page-3-text">
+                    <p>附近的人在家里、在公司、在商场喝咖啡
+                        拿起手机就能看到你的信息！
+                    <br/>（不用走到店门口看海报）</p>
+                    <h2>用户知晓身边动态，<br/>
+                        出门前就锁定你！</h2>
                 </div>
             </swiper-slide>
             <swiper-slide style="height: 100%;background-color: green" class="swiper-item tab-2-2">
@@ -72,7 +83,6 @@
                -->
                 <div class="blue-page-middle-2">
                     <img src="~@/assets/images/page-2/2/2-1.png" alt="">
-                    <p style="color:white">带动你的生意·再通过人脉多赚一份钱</p>
                 </div>
                 <div class="red-page-foot-3">
                   <img src="~@/assets/images/page-2/2/2-2.png" alt="">
@@ -156,9 +166,9 @@
     </div>
 </template>
 <script>
-    import menuBar from '@/components/menuBar/index.vue'
+    import menuBar from '@/components/menuBar/index.vue';
     import {getQueryStringV} from "@/plugins/extension";
-    import cooperRation from '_v/cooperation/index'
+    import cooperRation from '_v/cooperation/index';
     export default {
         name: "home",
         props: {
@@ -234,7 +244,7 @@
 					_this.setPageTitle(4);
                     window.startNum = null;
                     window.endNum = null;
-                }
+                }w
             }
         },
        async mounted() {
@@ -248,7 +258,8 @@
                 localStorage.setItem('inviteCode',getQueryStringV(location.href,'inviteCode'));
             },
             setPageTitle(n){
-                this.tab = parseInt(n);
+                this.tab = n;
+                console.log(this.tab);
                 //tab下图片索引数组
                 let points = [0, 3, 6, 10];
                 let point = document.getElementsByClassName('swiper-pagination-bullet');

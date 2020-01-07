@@ -1,4 +1,4 @@
-import { Dialog } from 'vant'
+import { Dialog,Toast } from 'vant'
 import Vue from 'vue'
 const common = {}
 common.install = function (Vue){  //挂载vue扩展
@@ -18,6 +18,13 @@ common.install = function (Vue){  //挂载vue扩展
         }).catch(() => {
             // on cancel
         });
+    }
+    /**
+     * @name 轻提示
+     * @param {String} msg
+     * **/
+    Vue.prototype.toast = function(msg ='提示信息'){
+        Toast(msg)
     }
 }
 Vue.use(common)

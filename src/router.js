@@ -67,6 +67,15 @@ export const asyncRouterMap = [
                     props: true
                 },
                 component: () => import('./views/wallet/billsDetail.vue')
+            },
+            {
+                path: '/withdraw',
+                name: 'withdraw',
+                meta: {
+                    name: '提现',
+                    props: true
+                },
+                component: () => import('./views/wallet/withdraw.vue')
             }
         
         ]

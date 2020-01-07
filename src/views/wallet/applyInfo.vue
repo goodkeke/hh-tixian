@@ -29,11 +29,12 @@
                 <van-field label="证件姓名" v-model="info.name" placeholder="请输入证件上的姓名" />
                 <van-field label="证件号码" v-model="info.idNumber" placeholder="请输入证件上的号码" />
             </van-cell-group>
-            <button class="btn-submit">提交</button>
+            <button class="btn-submit" @click="onSubmit">下一步</button>
         </div>
     </div>
 </template>
 <script>
+    import {Dialog} from 'vant'
     export default {
         name: "applyInfo",
         data(){
@@ -42,6 +43,16 @@
                     name:'',
                     idNumber:''
                 }
+            }
+        },
+        methods: {
+            onSubmit(){
+                Dialog.confirm(
+                    {title:'提示',message:'请再次核对您的姓名和证件号信息！姓名：张三 证件号：33434'}).then(() =>{
+                        console.log('done')
+                }).catch(() =>{
+                    console.log('done')
+                })
             }
         }
     }

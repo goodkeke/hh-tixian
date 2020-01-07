@@ -28,6 +28,51 @@
                  <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
+         <li>
+             <div class="item">
+                 <p>满百反币</p>
+                 <p>2019-01-09 21:11:11</p>
+             </div>
+             <div class="item">
+                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+             </div>
+         </li>
+         <li>
+             <div class="item">
+                 <p>满百反币</p>
+                 <p>2019-01-09 21:11:11</p>
+             </div>
+             <div class="item">
+                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+             </div>
+         </li>
+         <li>
+             <div class="item">
+                 <p>满百反币</p>
+                 <p>2019-01-09 21:11:11</p>
+             </div>
+             <div class="item">
+                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+             </div>
+         </li>
+         <li>
+             <div class="item">
+                 <p>满百反币</p>
+                 <p>2019-01-09 21:11:11</p>
+             </div>
+             <div class="item">
+                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+             </div>
+         </li>
+         <li>
+             <div class="item">
+                 <p>满百反币</p>
+                 <p>2019-01-09 21:11:11</p>
+             </div>
+             <div class="item">
+                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+             </div>
+         </li>
      </ul>
     </div>
 </template>
@@ -41,14 +86,13 @@
       }
     }
 </script>
-
 <style scoped lang="scss">
     @import "~@/style/_mixin";
 .container{
     padding: 0 10px;
     background-color: white !important;
     li{
-       @include flex-center(row,start,center);
+       @include flex-center(row,flex-start,center);
         border-bottom: 1px solid #eeeeee;
         padding: 5px 0 10px 0;
         .item{

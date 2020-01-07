@@ -22,7 +22,7 @@
   }
 }
 //弹性盒子布局
-@mixin flex-center($direction:row,$justify:center,$align:center,$flex-wrap: null) {
+@mixin flex-center($direction:row,$justify:center,$align:center,$flex-wrap: wrap) {
   display: -webkit-flex;
   display: flex;
   @if ($direction!=null) {
@@ -126,4 +126,16 @@
 @mixin commonFont($size:15px,$color:black){
   font-size: $size;
   color: $color;
+}
+
+//通用提交按钮
+@mixin btn-submit ($pos: absolute){
+  width: 345px;
+  height: 44px;
+  line-height: 44px;
+  color: white;
+  border: 0;
+  border-radius: 22px;
+  background:linear-gradient(#FA7B8C,#F57BA4);
+  position: $pos;
 }

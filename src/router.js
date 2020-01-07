@@ -11,7 +11,7 @@ export const asyncRouterMap = [
         redirect: '/home',
         component: Container,
         children: [{
-            path: 'home/:id?',
+            path: '/home/:id?',
             name: 'home',
             alias: '/',
             meta: {
@@ -20,7 +20,7 @@ export const asyncRouterMap = [
             },
             component: () => import('./views/home/index.vue')
         },{
-            path: 'register',
+            path: '/register',
             name: 'register',
             meta: {
                 name: '注册呼哈'
@@ -28,7 +28,7 @@ export const asyncRouterMap = [
             component: () => import('./views/register/index.vue')
         },
             {
-                path: 'cooperation',
+                path: '/cooperation',
                 name: 'cooperation',
                 meta: {
                     name: '呼哈商务合作计划'
@@ -36,7 +36,7 @@ export const asyncRouterMap = [
                 component: () => import('./views/cooperation/index.vue')
             },
             {
-                path: 'drawPost',
+                path: '/drawPost',
                 name: 'drawPost',
                 meta: {
                     name: '推广素材'
@@ -49,11 +49,20 @@ export const asyncRouterMap = [
                 name:'APP下载'
                 },
                 component: () => import('./components/dialog/index.vue')
+            },
+            {
+                path: '/wallet',
+                name: 'wallet',
+                meta: {
+                    name: '我的钱包',
+                    props: true
+                },
+                component: () => import('./views/wallet/index.vue')
             }
         
         ]
     }
-]
+];
 
 const router = new Router({
     routes: asyncRouterMap

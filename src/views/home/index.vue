@@ -244,7 +244,7 @@
 					_this.setPageTitle(4);
                     window.startNum = null;
                     window.endNum = null;
-                }w
+                }
             }
         },
        async mounted() {
@@ -259,7 +259,6 @@
             },
             setPageTitle(n){
                 this.tab = n;
-                console.log(this.tab);
                 //tab下图片索引数组
                 let points = [0, 3, 6, 10];
                 let point = document.getElementsByClassName('swiper-pagination-bullet');

@@ -1,8 +1,6 @@
 <template>
     <div class="container">
-        <div class="title-head">
-            <h3>呼哈钱包</h3>
-        </div>
+        <van-nav-bar title="呼哈钱包"></van-nav-bar>
         <div class="main">
         <div class="wallet-card">
             <div class="card-item">

@@ -4,14 +4,14 @@ import Container from './container/index'
 Vue.use(Router)
 export const asyncRouterMap = [
     {
-        path: '',
+        path: '/',
         meta: {
             title: '首页',
         },
         redirect: '/home',
         component: Container,
         children: [{
-            path: '/home/:id?',
+            path: 'home/:id?',
             name: 'home',
             alias: '/',
             meta: {

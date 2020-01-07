@@ -30,15 +30,14 @@
             </div>
         </div>
         <div class="banner">
-
+            <img src="../../assets/images/wallet/banner.png"/>
         </div>
-
         <div class="benefits">
             <div class="head">
                 <div class="item">
                     <span>实时收益</span>
                 </div>
-               <div class="item">
+               <div class="item" @click="$router.push('/billsDetail')">
                    <span>账单明细</span> <img src="../../assets/images/wallet/icon-arrow.png" alt="">
                </div>
             </div>
@@ -47,7 +46,6 @@
         </div>
     </div>
 </template>
-
 <script>
     import commonList from '../../components/wallet/list.vue'
     export default {
@@ -78,6 +76,12 @@
         border: 0;
     }
     .container{
+        .banner{
+            margin-top: 22px;
+            img{
+                width: 100%;
+            }
+        }
         .main{
             padding: 10px;
         }
@@ -89,7 +93,7 @@
             margin-top: 10px;
             .head{
                 padding: 10px;
-                @include flex-center(row,start,center);
+                @include flex-center(row,flex-start,center);
                 border-bottom: 1px solid #eeeeee;
                 .item{
                     flex: 1;
@@ -129,7 +133,7 @@
             }
             .price{
                 margin: 10px 0;
-                @include flex-center(row,start,center);
+                @include flex-center(row,flex-start,center);
                 .tag{
                     padding: 0 3px;
                     font-size: 12px;

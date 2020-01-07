@@ -51,7 +51,7 @@ export const asyncRouterMap = [
                 component: () => import('./components/dialog/index.vue')
             },
             {
-                path: '/wallet',
+                path: '/wallet/:id?',
                 name: 'wallet',
                 meta: {
                     name: '我的钱包',
@@ -60,13 +60,22 @@ export const asyncRouterMap = [
                 component: () => import('./views/wallet/index.vue')
             },
             {
-                path: '/billsDetail',
+                path: '/billsDetail/:id?',
                 name: 'billsDetail',
                 meta: {
                     name: '账单明细',
                     props: true
                 },
                 component: () => import('./views/wallet/billsDetail.vue')
+            },
+            {
+                path: '/applyInfo/:id?',
+                name: 'applyInfo',
+                meta: {
+                    name: '账单明细',
+                    props: true
+                },
+                component: () => import('./views/wallet/applyInfo.vue')
             }
         
         ]

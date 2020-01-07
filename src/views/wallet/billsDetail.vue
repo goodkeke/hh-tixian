@@ -12,12 +12,16 @@
                 <van-tab title="收入"></van-tab>
                 <van-tab title="支出"></van-tab>
             </van-tabs>
+            <common-list></common-list>
         </div>
     </div>
 </template>
-
 <script>
+    import commonList from '../../components/wallet/list.vue'
     export default {
+        components:{
+            commonList
+        },
         name: "billsDetail",
         data(){
             return{
@@ -29,10 +33,10 @@
         },
         methods:{
             returnPreview (){
-
+                this.$router.go(-1);
             },
             tabOnClick(i,t){
-               
+
             }
         }
     }

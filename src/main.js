@@ -15,9 +15,9 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
  @按需引入vant组件
   */
 import {
-  Field, NavBar,Tab,Tabs
+  Field, NavBar,Tab,Tabs,Cell, CellGroup
 } from 'vant'
-Vue.use(Field).use(NavBar).use(Tab).use(Tabs);
+Vue.use(Field).use(NavBar).use(Tab).use(Tabs).use(Cell).use(CellGroup);
 
 Vue.config.productionTip = true;
 Vue.prototype.tools = tools;

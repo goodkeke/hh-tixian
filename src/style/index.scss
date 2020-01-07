@@ -842,3 +842,13 @@ body{
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+  .title-head{
+    background-color: white;
+    text-align: center;
+    height: 38px;
+    h3{
+      color: #333333;
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }

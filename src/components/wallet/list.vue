@@ -45,6 +45,7 @@
 <style scoped lang="scss">
     @import "~@/style/_mixin";
 .container{
+    padding: 0 10px;
     background-color: white !important;
     li{
        @include flex-center(row,start,center);

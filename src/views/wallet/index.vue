@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <div class="title-head">
+            <h3>呼哈钱包</h3>
+        </div>
+        <div class="main">
         <div class="wallet-card">
             <div class="card-item">
                 <p>现金余额(元)</p>
@@ -42,6 +46,7 @@
             </div>
             <common-list></common-list>
         </div>
+        </div>
     </div>
 </template>
 
@@ -75,8 +80,10 @@
         border: 0;
     }
     .container{
+        .main{
+            padding: 10px;
+        }
         background:rgba(243,243,243,1);
-        padding: 10px;
         .benefits{
             border-radius: 10px;
             background-color: white;

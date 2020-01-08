@@ -19,7 +19,7 @@
                 <p>现金余额(元)</p>
                 <div class="price">
                     <div class="item">
-                        <span class="tag">购物抵用·100币=1元</span>
+                        <span class="tag">消费抵用·100币=1元</span>
                         <span><img src="~@/assets/images/wallet/icon-coin.png" alt=""><i>9999.00</i> </span>
                     </div>
                     <div class="item">

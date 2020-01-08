@@ -36,28 +36,45 @@
 		  <div class="tips">
             提现说明 <br/>1、最低提现金额为100元，且提现金额需是100的倍数。<br/> 2、提现将收取1%的服务费。
 		  </div>
+		  <pay :show="payShow" @pay-success="paySuccess" @pay-fail="payFail"></pay>
+		  <div class="btn-submit" @click="submit">提交</div>
     </div>
 </template>
 
 <script>
+	import pay from '../../components/wallet/pay.vue'
     export default {
-        name: 'withdraw',
+		name: 'withdraw',
+		components: {
+			pay
+		},
         data () {
             return {
 				cardNum: '',
 				existMoney: '',
 				withdrawMoney: '',
-				serveMoney: ''
+				serveMoney: '',
+				payShow: false
             }
 		},
 		mounted () {
-			this.toast('轻提示')
+		},
+		methods: {
+			paySuccess (password) {
+				this.payShow = false
+			},
+			payFail () {
+				this.payShow = false
+			},
+			submit () {
+				this.payShow = true
+			}
 		}
-		
     }
 </script>
 
 <style scoped lang="scss">
+	@import "~@/style/_mixin";
     .container{
 		background:rgba(243,243,243,1);
 		.tips {
@@ -68,6 +85,12 @@
 		}
 		.unit {
 			color:rgba(228,6,27,1);
+		}
+		.btn-submit {
+			@include btn-submit;
+			left: 15px;
+			text-align: center;
+			bottom: 20px;
 		}
     }
 </style>

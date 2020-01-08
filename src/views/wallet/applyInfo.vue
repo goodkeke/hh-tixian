@@ -1,9 +1,7 @@
 <template>
     <div class="container">
         <div class="top">
-            <div class="line">
-
-            </div>
+            <div class="line"></div>
             <div class="item active">
                 <span class="circle-step">1</span>
                 <span>实名认证</span>
@@ -29,7 +27,22 @@
                 <van-field label="证件姓名" v-model="info.name" placeholder="请输入证件上的姓名" />
                 <van-field label="证件号码" v-model="info.idNumber" placeholder="请输入证件上的号码" />
             </van-cell-group>
-            <button class="btn-submit" @click="onSubmit">下一步</button>
+            <button class="btn-submit" @click="onSubmit" :class="{'btn-active': !firstStep}">下一步</button>
+        </div>
+
+        <div class="confirm-box" v-if="!firstStep">
+            <p>请绑定真实姓名为 <i>某某某</i> 的储蓄卡</p>
+        </div>
+        <div class="bank-box" v-if="!firstStep">
+            <van-cell-group>
+                <van-field label="银行卡号" v-model="info.bankAccount" placeholder="请输入银行卡号" />
+            </van-cell-group>
+        </div>
+        <div class="describe" v-if="!firstStep">
+            <p>提现说明</p>
+            <p>1、仅可使用储蓄卡，请不要填写信用卡。</p>
+            <p>2、绑定储蓄卡的持卡人需与实名认证所用姓名一致。</p>
+            <p>3、支持的银行卡：中国工商银行、中国农业银行、中国建设银行、中国交通银行、招商银行、兴业银行、华夏银行、中信银行、邮政储蓄等。</p>
         </div>
     </div>
 </template>
@@ -40,15 +53,17 @@
         data(){
             return {
                 info: {
-                    name:'',
-                    idNumber:''
-                }
+                    name: '',
+                    idNumber: '',
+                    bankAccount: ''
+                },
+                firstStep: true,
             }
         },
         methods: {
             onSubmit(){
                 Dialog.confirm(
-                    {title:'提示',message:'请再次核对您的姓名和证件号信息！姓名：张三 证件号：33434'}).then(() =>{
+                    {title:'提示',message:'请再次核对您的姓名和证件号信息！姓名：张三 证件号：33434',confirmButtonColor:'#E4061B'}).then(() =>{
                         console.log('done')
                 }).catch(() =>{
                     console.log('done')
@@ -59,6 +74,11 @@
 </script>
 <style scoped lang="scss">
     @import "~@/style/_mixin";
+    @mixin panel {
+        margin-top: 10px;
+        padding: 6px;
+        background-color: white;
+    }
     .btn-submit{
         @include btn-submit;
         bottom: 20px;
@@ -67,8 +87,35 @@
         padding: 10px 0;
         font-size: 15px;
     }
+    .btn-active{
+        background:linear-gradient(#F10059, #FF0014) !important;
+    }
     .container{
         background-color: #F8F8F8;
+        .describe{
+            padding:10px;
+            p{
+                color: #666666;
+                font-size: 12px;
+                margin: 4px 0;
+            }
+        }
+        .bank-box {
+            @include panel;
+            padding: 0 10px;
+        }
+        .confirm-box{
+            @include panel;
+            text-align: center;
+            font-size: 14px;
+            p{
+                color: #333333;
+                i{
+                    color: #E4061B;
+                    font-style: normal;
+                }
+            }
+        }
         .upload-context{
             margin-top: 10px;
             background-color: white;

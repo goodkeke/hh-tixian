@@ -129,13 +129,13 @@
 }
 
 //通用提交按钮
-@mixin btn-submit ($pos: absolute){
+@mixin btn-submit ($pos: absolute,$color1:#F10059,$color2:#FF0014){
   width: 345px;
   height: 44px;
   line-height: 44px;
   color: white;
   border: 0;
   border-radius: 22px;
-  background:linear-gradient(#FA7B8C,#F57BA4);
+  background:linear-gradient($color1,$color2);
   position: $pos;
 }

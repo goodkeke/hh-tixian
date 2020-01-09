@@ -19,12 +19,12 @@
                 <p>现金余额(元)</p>
                 <div class="price">
                     <div class="item">
-                        <span class="tag">消费抵用·100币=1元</span>
+                        <span class="tag">支付抵用·100币=1元</span>
                         <span><img src="~@/assets/images/wallet/icon-coin.png" alt=""><i>9999.00</i> </span>
                     </div>
                     <div class="item">
                         <button class="btn-cashing last-btn">兑换</button>
-                        <span class="des">兑换现金：10000币=95元</span>
+                        <span class="des">支付现金：10000币=95元</span>
                     </div>
                 </div>
             </div>

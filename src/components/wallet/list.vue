@@ -7,7 +7,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>
@@ -16,7 +16,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>
@@ -25,7 +25,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>
@@ -34,7 +34,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>
@@ -43,7 +43,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>
@@ -52,7 +52,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>
@@ -61,7 +61,7 @@
                  <p>2019-01-09 21:11:11</p>
              </div>
              <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
              </div>
          </li>
          <li>

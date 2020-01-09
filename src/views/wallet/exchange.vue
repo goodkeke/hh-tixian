@@ -16,9 +16,8 @@
         <div class="content">
             <span>说明：</span>
             <ul>
-                <li>呼哈币购物抵用：100币=1元，最低抵用数额为100个币，每次抵用的数额只能是100的倍数；</li>
-                <li>呼哈币兑换现金：10000币=95元（100币＜1元），最低兑换数额为10000个币，每次兑换的数额只能是10000的倍数；</li>
-                <li>通过满百返币、交易收款、平台直接赠送及其他赏币功能获得的呼哈币可兑换成现金。</li>
+                <li>呼哈币兑换现金：10000币=95元（100币＜1元），10000币起兑，每次兑换须为10000币的倍数。兑换成现金余额后，依照现金使用规则进行提现。</li>
+                <li>呼哈币支付抵用：作为用户在呼哈上消费时（向商家付款）抵扣使用，100币=1元，100币起抵，每次抵用须为100币的倍数。</li>
             </ul>
         </div>
         <van-popup v-model="isShowPop" position="bottom" class="pop" round closeable >
@@ -32,7 +31,7 @@
 </template>
 
 <script>
-    import {Dialog} from 'vant'
+    import {Dialog,Toast} from 'vant'
     export default {
         name: "exchange",
         data(){
@@ -76,7 +75,10 @@
                     confirmButtonColor:'#E4061B'
                 }).then(() =>{
                     this.isShowPop = !this.isShowPop;
+                    //todo list 输入密码
+                    Toast('兑换成功')
                 }).catch(() => {
+                    Toast('兑换失败');
                 })
             },
             onInput(key) {

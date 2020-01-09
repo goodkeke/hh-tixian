@@ -86,8 +86,15 @@ export const asyncRouterMap = [
                 },
                 component: () => import('./views/wallet/applyInfo.vue')
             }
-        
         ]
+    },
+    {
+        path: '/exchange',
+        name:'exchange',
+        meta: {
+            name: '呼哈币兑换现金'
+        },
+        component: () => import('./views/wallet/exchange.vue'),
     }
 ];
 

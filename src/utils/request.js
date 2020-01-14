@@ -7,7 +7,7 @@ import router from '../router'
 
 // 创建axios实例
 const service = axios.create({
-    baseURL: process.env.VUE_APP_MOCK === 'true' ? 'http://rap2api.taobao.org/app/mock/238102' : process.env.VUE_APP_API, // api的baseURL如果启用mock则使用mock地址
+    baseURL: process.env.VUE_APP_MOCK === 'true' ? 'http://rap2api.taobao.org/' : process.env.VUE_APP_API, // api的baseURL如果启用mock则使用mock地址
     timeout: 60000 // 请求超时时间,
 })
 const requestKey = 'U2FsdGVkX189N3VRCrUckSMoQM98v8PB';
@@ -48,7 +48,7 @@ service.interceptors.response.use(response => {
     // @如果启用mock则使用mock地址
     if( process.env.VUE_APP_MOCK === 'true'){
         if(response.data.retType !==1){
-            Toast(response.data.message||'服务器器异常，请稍后再试')
+            Toast(response.data.message||'服务器器异常，请稍后再试');
             return false
         }else{
             return response.data;

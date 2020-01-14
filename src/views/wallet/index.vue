@@ -68,7 +68,7 @@
         },
         methods:{
             async getIndexData(){
-                const res = await commonApi({},'walletIndex');
+                const res = await commonApi({},'1383455');
             }
         }
     }

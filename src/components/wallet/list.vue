@@ -1,76 +1,13 @@
 <template>
     <div class="container">
      <ul>
-         <li>
+         <li v-for="(item, index) in list" :key="index">
              <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
+                 <p>{{item.title}}</p>
+                 <p>{{item.date}}</p>
              </div>
              <div class="item">
-                <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="../../assets/images/wallet/icon-coin.png"/> 50</span>
-             </div>
-         </li>
-         <li>
-             <div class="item">
-                 <p>到店付收款-订单号：1235234</p>
-                 <p>2019-01-09 21:11:11</p>
-             </div>
-             <div class="item">
-                 <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> 50</span>
+                <span> + <img :src="item.img"/> 50</span>
              </div>
          </li>
      </ul>
@@ -81,13 +18,25 @@
         name:'common-list',
       data(){
           return{
-
+             list: [
+                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
+                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
+                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
+                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
+                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
+                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')}
+             ]
           }
-      }
+      },
+        mounted() {
+
+        }
     }
 </script>
 <style scoped lang="scss">
     @import "~@/style/_mixin";
+    //过度效果
+
 .container{
     padding: 0 10px;
     background-color: white !important;
@@ -95,8 +44,10 @@
        @include flex-center(row,flex-start,center);
         border-bottom: 1px solid #eeeeee;
         padding: 5px 0 10px 0;
+        background-color: white;
+        transition: background-color .5s ease-in-out;
         .item{
-            flex: 1;
+            flex: auto;
             &:first-child{
                 p{
                     margin: 3px 0;

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <van-nav-bar title="呼哈钱包"></van-nav-bar>
+<!--        <van-nav-bar title="呼哈钱包"></van-nav-bar>-->
         <div class="main">
         <div class="wallet-card">
             <div class="card-item">
@@ -10,7 +10,7 @@
                         <span>￥<i>9999.00</i> </span>
                     </div>
                     <div class="item">
-                        <button class="btn-cashing">提现</button>
+                        <button class="btn-cashing" @click="$router.push('/applyInfo')">提现</button>
                     </div>
                 </div>
             </div>

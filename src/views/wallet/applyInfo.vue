@@ -29,7 +29,6 @@
             </van-cell-group>
             <button class="btn-submit" @click="onSubmit" :class="{'btn-active': !firstStep}">下一步</button>
         </div>
-
         <div class="confirm-box" v-if="!firstStep">
             <p>请绑定真实姓名为 <i>某某某</i> 的储蓄卡</p>
         </div>

@@ -60,6 +60,9 @@
         },
         mounted() {
 
+        },
+        methods:{
+
         }
     }
 </script>

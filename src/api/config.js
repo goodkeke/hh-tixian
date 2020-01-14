@@ -1,13 +1,18 @@
 /**
- * @HomePageList 为请求地址前缀 例如 www.baidu.com/api/lgon 则前缀为 api/
+ * @api配置
  * */
 
 const apiList = {
-    getCode: 'me.huha.platform.message.service.SmsCodeService.send/v1.0.0',  //获取验证码
-    register:'me.huha.platform.api.service.UserInfoService.registered/v1.0.0', //注册
-    cooperation: 'me.huha.platform.operation.service.BusinessPartnerService.insertBusinessPartner/v1.0.0', //联盟合作
-    sendInvite: 'me.huha.platform.api.service.ShareService.sendInvite/v1.0.0', //邀请码
-	checkPhone: 'me.huha.platform.usercenter.service.UserInfoService.checkPhone/v1.0.0', //检查手机号码是否注册过
+    prefix: 'me.huha.platform.',
+    version: '/v1.0.0',
+    getCode: 'message.service.SmsCodeService.send',  //获取验证码
+    register:'api.service.UserInfoService.registered', //注册
+    cooperation: 'operation.service.BusinessPartnerService.insertBusinessPartner', //联盟合作
+    sendInvite: 'api.service.ShareService.sendInvite', //邀请码
+	checkPhone: 'usercenter.service.UserInfoService.checkPhone', //检查手机号码是否注册过
+    walletIndex: 'finance.service.ScheduleInterestService.walletIndex', //钱包首页
+    walletList: 'finance.service.ScheduleInterestService.getUserScheduleInterest', //钱包列表
+
 	
 }
 

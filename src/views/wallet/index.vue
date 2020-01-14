@@ -48,6 +48,7 @@
 </template>
 <script>
     import commonList from '../../components/wallet/list.vue'
+    import { commonApi } from '../../api/index'
     export default {
         components:{
             commonList,
@@ -55,14 +56,20 @@
         name: "wallet",
         data(){
             return{
-
+                indexData: [],
+                listData: []
             }
+        },
+        created() {
+            this.getIndexData();
         },
         mounted() {
 
         },
         methods:{
-
+            async getIndexData(){
+                const res = await commonApi({},'walletIndex');
+            }
         }
     }
 </script>

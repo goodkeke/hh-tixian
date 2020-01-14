@@ -12,8 +12,6 @@ const apiList = {
 	checkPhone: 'usercenter.service.UserInfoService.checkPhone', //检查手机号码是否注册过
     walletIndex: 'finance.service.ScheduleInterestService.walletIndex', //钱包首页
     walletList: 'finance.service.ScheduleInterestService.getUserScheduleInterest', //钱包列表
-
-	
 }
 
 export default  apiList

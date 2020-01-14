@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Toast } from 'vant';
 import { encryptBy, decryptBy, callMd5,getQueryStringV } from "@/plugins/extension";
+import apiList from "../api/config";
 import Qs from 'qs'
 import router from '../router'
 

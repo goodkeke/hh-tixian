@@ -6,6 +6,19 @@ function resolve(dir){
     return path.join(__dirname,dir)
 }
 module.exports = {
+    //代理
+    devServer: {
+        // proxy: {
+        //     '/api': {
+        //         target: 'http://dubbo.test.huhacity.com/gw/h5/', //API服务器的地址
+        //         ws: true,  //代理websockets
+        //         changeOrigin: true, // 虚拟的站点需要更管origin
+        //         pathRewrite: {   //重写路径
+        //             '^/api': ''
+        //         }
+        //     }
+        // }
+    },
     //配置输出文件目录
         publicPath: process.env.baseUrl,
         outputDir: outputDir,

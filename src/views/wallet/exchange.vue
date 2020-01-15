@@ -51,7 +51,7 @@
         },
         mounted(){
             // if(this.$route.params.coin) this.money = this.$route.params.coin;
-            this.money = this.$route.params.coin;
+            this.money = this.$route.params.coin || 0;
             console.log(this.money)
         },
         watch:{

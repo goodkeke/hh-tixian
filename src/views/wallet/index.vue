@@ -47,8 +47,9 @@
     </div>
 </template>
 <script>
-    import commonList from '../../components/wallet/list.vue'
-    import { commonApi } from '../../api/index'
+    import commonList from '../../components/wallet/list.vue';
+    import { commonApi } from '../../api/index';
+    import { getQueryStringV } from "@/plugins/extension";
     export default {
         components:{
             commonList,
@@ -69,6 +70,7 @@
         },
         created() {
             this.getData();
+            sessionStorage.setItem('token',getQueryStringV(window.location.href,'token'));
         },
         methods:{
             async getData(){
@@ -77,7 +79,7 @@
             },
             withdraw(){
                 let path = this.indexData.attestation ? 'withdraw' : 'applyInfo';
-                this.$router.push(path);
+                this.$router.push('applyInfo');
             }
         }
     }

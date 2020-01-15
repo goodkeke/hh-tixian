@@ -102,8 +102,6 @@
                     /**
                      ** @ 项目紧急，日后再优化！！
                      * **/
-                    if(this.idCard.front.indexOf('oss')> -1 && this.idCard.back.indexOf('oss')> -1){
-                        if(this.info.name && this.info.idNumber){
                             if(!this.tools.isChinese(this.info.name)){
                                 Toast('姓名只能为中文');
                                 return;
@@ -118,18 +116,21 @@
                             }).catch(() =>{
                                 console.log('操作取消')
                             })
-                        }else{
-                            Toast('请正确填写证件姓名和证件号码');
-                        }
-                    }else{
-                        Toast('请上传身份证照片');
-                    }
+
                 }else{
                     Toast('请填写正确的银行卡卡号');
                 }
             },
             onSubmit(){
-                this.firstStep = false;
+                if(this.idCard.front.indexOf('oss')> -1 && this.idCard.back.indexOf('oss')> -1){
+                    if(this.info.name && this.info.idNumber){
+                        this.firstStep = false;
+                         }else{
+                            Toast('请正确填写证件姓名和证件号码');
+                        }
+                    }else{
+                        Toast('请上传身份证照片');
+                    }
             },
             uploadFn(side){
                 let el = document.getElementsByClassName('van-uploader__input');
@@ -149,7 +150,9 @@
                     backCard: this.info.bankAccount
                 };
                 const res = await commonApi(methods, 'apply');
-                Toast(res.retCode === 'SUCCESS' ? '提交成功': res.retCode);
+                Toast(res.retCode === 'SUCCESS' ? '提交成功': res.retMsg);
+                res.retCode === 'SUCCESS' && this.$router.push('withdraw');
+
             },
            async uploaded(file){
                 this.show = true;
@@ -194,11 +197,11 @@
     }
     .btn-active{
         background:linear-gradient(#F10059, #FF0014);
-        left: 14px;
     }
     .btn-submit{
         @include btn-submit(absolute, #FB7B8A, #F67BA3);
         bottom: 20px;
+        left: 14px;
     }
     .pic-active{
         width: 100% !important;

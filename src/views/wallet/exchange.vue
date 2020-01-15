@@ -24,7 +24,9 @@
             <p class="title">输入密码</p>
             <p class="tip">请输入登录密码，确保交易安全</p>
             <!-- 密码输入框 -->
-            <van-password-input :value="pwd" :focused="showKeyboard" @focus="showKeyboard = true" />
+            <van-password-input :value="pwd" :focused="showKeyboard" type="tel" @focus="showKeyboard = true" />
+            <!-- 数字键盘 -->
+            <van-number-keyboard :show="showKeyboard" @input="onInput" @delete="onDelete" @blur="showKeyboard = false"/>
             <div class="txt hh-red" @click="this.$route.push('/')">忘记密码?</div>
         </van-popup>
     </div>
@@ -32,6 +34,7 @@
 
 <script>
     import {Dialog,Toast} from 'vant'
+    import {commonApi} from "@/api";
     export default {
         name: "exchange",
         data(){
@@ -40,43 +43,62 @@
                 amount:'',
                 tip:'最低兑换数量10000个，请输入10000或10000的倍数',
                 err:true,
-                disabled:false,
+                disabled:true,
                 isShowPop:false,
                 pwd:'',
-                showKeyboard:'',
+                showKeyboard: true
             }
+        },
+        mounted(){
+            if(this.$route.query.money) this.money = this.$route.query.money;
         },
         watch:{
             amount:{
                 handler(val){
                     if(val){
-                        if(val>=10000 && val%10000 == 0){
+                        if(val>=10000 && val%10000 == 0 && Number(val) < Number(this.money)){
                             this.err = false;
                             this.disabled = false;
                             this.tip = '可兑换'+parseInt(val/10000)*95+'元';
                         }else {
-                            this.err = false;
-                            this.disabled = true;
-                            this.tip='请输入10000或10000的倍数'
+                            if(Number(val) > Number(this.money)){
+                                this.err = true;
+                                this.disabled = true;
+                                this.tip='您输入的兑换数值大于余额数值'
+                            }else {
+                                this.err = false;
+                                this.disabled = true;
+                                this.tip='请输入10000或10000的倍数'
+                            }
                         }
                     }else {
                         this.err = true;
                         this.tip = '最低兑换数量10000个，请输入10000或10000的倍数';
                     }
-                }
+                },
+                deep:true
+            },
+            pwd:{
+                handler(val){
+                    if(val.length == 6){
+                        console.log('11111',this.pwd.length)
+                        const res = commonApi({passWord:val,amount:this.amount},'withdraw','post');
+                        console.log('2222222222',res)
+                        // Toast('兑换成功')
+                    }
+                },
+                deep:true
             }
         },
         methods:{
             //马上兑换
-            onExchange(){
+           onExchange(){
                 Dialog.confirm({
                     message:'确定将呼哈币兑换成现金吗？',
                     confirmButtonText:'确定',
                     confirmButtonColor:'#E4061B'
                 }).then(() =>{
                     this.isShowPop = !this.isShowPop;
-                    //todo list 输入密码
-                    Toast('兑换成功')
                 }).catch(() => {
                     Toast('兑换失败');
                 })
@@ -157,7 +179,7 @@
         }
     }
     .pop{
-        height: 50%;
+        height: 60%;
         .title{
             height: 30px;
             line-height: 30px;
@@ -171,7 +193,7 @@
             color: #333;
         }
         .txt{
-            font-size:15px;
+            font-size:14px;
             float: right;
             margin-right: 15px;
             height: 30px;

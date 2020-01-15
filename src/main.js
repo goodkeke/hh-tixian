@@ -15,10 +15,10 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
  @按需引入vant组件
   */
 import {
-  Field, NavBar,Tab,Tabs,Cell, CellGroup, Button, Dialog, PasswordInput, Popup, Uploader,Overlay,Loading
+  Field, NavBar,Tab,Tabs,Cell, CellGroup, Button, Dialog, PasswordInput, Popup, NumberKeyboard, Uploader,Overlay,Loading
 } from 'vant'
-Vue.use(Field).use(NavBar).use(Tab).use(Tabs).use(Cell).use(CellGroup).use(Button).use(Dialog).use(Overlay).use(Loading)
-    .use(PasswordInput).use(Popup).use(Uploader);
+Vue.use(Field).use(NavBar).use(Tab).use(Tabs).use(Cell).use(CellGroup).use(Button).use(Dialog).use(PasswordInput).use(Popup).use(NumberKeyboard).use(Overlay).use(Loading)
+    .use(PasswordInput).use(Uploader);
 
 Vue.config.productionTip = true;
 Vue.prototype.tools = tools;

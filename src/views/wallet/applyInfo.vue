@@ -76,16 +76,35 @@
             }
         },
         created() {
-        //     if(!window.OSS) asyncCreatScript('https://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js');
+            if(!window.OSS) asyncCreatScript('https://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js');
         },
         methods: {
             onSubmit(){
-                Dialog.confirm(
-                    {title:'提示',message:'请再次核对您的姓名和证件号信息！姓名：张三 证件号：33434',confirmButtonColor:'#E4061B'}).then(() =>{
-                        console.log('done')
-                }).catch(() =>{
-                    console.log('done')
-                })
+                /**
+                 ** @ 项目紧急，日后再优化！！
+                 * **/
+                if(this.idCard.front.indexOf('oss')> -1 && this.idCard.back.indexOf('oss')> -1){
+                    if(this.info.name && this.info.idNumber){
+                        if(!this.tools.isChinese(this.info.name)){
+                            Toast('姓名只能为中文');
+                            return;
+                        }
+                        if(!this.tools.isIdCard(this.info.idNumber)){
+                            Toast('请输入正确的身份证号码');
+                            return;
+                        }
+                        Dialog.confirm(
+                            {title:'提示',message:`请再次核对您的姓名和证件号信息！姓名：${this.info.name} 证件号：${this.info.idNumber}`,confirmButtonColor:'#E4061B'}).then(() =>{
+                            this.submitInfo();
+                        }).catch(() =>{
+                            console.log('done')
+                        })
+                    }else{
+                        Toast('请正确填写证件姓名和证件号码');
+                    }
+                }else{
+                    Toast('请上传身份证照片');
+                }
             },
             uploadFn(side){
                 let el = document.getElementsByClassName('van-uploader__input');
@@ -94,6 +113,17 @@
                 }else{
                     el[el.length - 1].click();
                 }
+            },
+           async submitInfo(){
+                const methods = {
+                    name: this.info.name,
+                    cardFrond: this.idCard.front,
+                    cardBack: this.idCard.back,
+                    backCard: this.info.bankAccount
+                };
+                const res = await commonApi(methods, 'apply');
+                this.firstStep = false;
+                Toast(res.retCode);
             },
            async uploaded(file){
                 this.show = true;
@@ -108,18 +138,17 @@
                     stsToken: res.data.SecurityToken,
                     bucket: res.data.bucketName
                 });
-               const Name = file.file.name;
-               const suffix = Name.substr(Name.indexOf('.'));          // 文件后缀
-               const filename = Date.parse(new Date()) + suffix;
-               await client.multipartUpload(res.data.catalogue+'/'+filename, file.file).then(res => {   // 上传
+                const Name = file.file.name;
+                const suffix = Name.substr(Name.indexOf('.'));          // 文件后缀
+                const filename = Date.parse(new Date()) + suffix;
+                await client.multipartUpload(res.data.catalogue+'/'+filename, file.file).then(res => {   // 上传
                    let side = _this.fileList.length > 1 ? 'back' : 'front';
                    _this.idCard[side] = res.res.requestUrls[0].split("?")[0];
                     this.show = false;
-                }).catch(err => {
+                  }).catch(err => {
                    this.show = false;
-                   Toast('上传失败！')
-                })
-
+                   Toast('上传失败！');
+                  })
             }
         }
     }

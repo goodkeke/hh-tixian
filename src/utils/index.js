@@ -35,6 +35,15 @@ export default class tools{
         return /^\d+$/.test(str)
     }
     /**
+     * @判断是否为中文
+     * @return { boolean }
+     * @param str {string}
+     **/
+    static isChinese(str){
+        let reg = new RegExp("[\\\u4E00-\\\u9FFF]","g");
+        return reg.test(str);
+    }
+    /**
      * @数组去重
      * @return { array }
      * @param arr {array}

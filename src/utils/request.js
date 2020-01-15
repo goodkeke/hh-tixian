@@ -9,7 +9,7 @@ import router from '../router'
 const service = axios.create({
     baseURL: process.env.VUE_APP_MOCK === 'true' ? 'http://rap2api.taobao.org/' : process.env.VUE_APP_API, // api的baseURL如果启用mock则使用mock地址
     timeout: 60000 // 请求超时时间,
-})
+});
 const requestKey = 'U2FsdGVkX189N3VRCrUckSMoQM98v8PB';
 const responseKey = 'U2FsdGVkXN32VRRCrUckSMoQM98v8PBHUHA';
 const appKey = 'cb6015828a44b5234ce9ed1c3bc7acb0';

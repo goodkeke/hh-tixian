@@ -1,26 +1,26 @@
 <template>
     <div class="container">
 <!--        <van-nav-bar title="呼哈钱包"></van-nav-bar>-->
-        <div class="main">
+        <div class="main" v-if="indexData">
         <div class="wallet-card">
             <div class="card-item">
                 <p>现金余额(元)</p>
                 <div class="price">
                     <div class="item">
-                        <span>￥<i>9999.00</i> </span>
+                        <span>￥<i>{{indexData.wallet}}</i> </span>
                     </div>
                     <div class="item">
-                        <button class="btn-cashing" @click="$router.push('/applyInfo')">提现</button>
+                        <button class="btn-cashing" @click="withdraw">提现</button>
                     </div>
                 </div>
             </div>
             <div class="split"></div>
             <div class="card-item">
-                <p>现金余额(元)</p>
+                <p>呼哈币余额(元)</p>
                 <div class="price">
                     <div class="item">
                         <span class="tag">支付抵用·100币=1元</span>
-                        <span><img src="~@/assets/images/wallet/icon-coin.png" alt=""><i>9999.00</i> </span>
+                        <span><img src="~@/assets/images/wallet/icon-coin.png" alt=""><i>{{indexData.coin}}</i> </span>
                     </div>
                     <div class="item">
                         <button class="btn-cashing last-btn">兑换</button>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="banner">
-            <img src="../../assets/images/wallet/banner.png"/>
+            <img :src="indexData.ad || require('@/assets/images/wallet/banner.png')"/>
         </div>
         <div class="benefits">
             <div class="head">
@@ -41,7 +41,7 @@
                    <span>账单明细</span> <img src="../../assets/images/wallet/icon-arrow.png" alt="">
                </div>
             </div>
-            <common-list></common-list>
+            <common-list :request="childRequest" />
         </div>
         </div>
     </div>
@@ -57,19 +57,27 @@
         data(){
             return{
                 indexData: [],
-                listData: []
+                childRequest: {
+                    method: 'walletList',
+                    query: {
+                        type: 'income',
+                        pageSize: 10,
+                        pageNum: 1
+                    }
+                }
             }
         },
         created() {
-            this.getIndexData();
-        },
-        mounted() {
-
+            this.getData();
         },
         methods:{
-            async getIndexData(){
-                const res = await commonApi({},'walletIndex');
-                console.log(res)
+            async getData(){
+                const res = await commonApi({}, 'walletIndex');
+                this.indexData = res.data || [];
+            },
+            withdraw(){
+                let path = this.indexData.attestation ? 'withdraw' : 'applyInfo';
+                this.$router.push(path);
             }
         }
     }
@@ -151,7 +159,7 @@
                     color: #F82744;
                     position: absolute;
                     top: -36px;
-                    right: -30px;
+                    right: -50px;
                     background-color: white;
                     border-radius:  10px 10px 10px 0;
                 }

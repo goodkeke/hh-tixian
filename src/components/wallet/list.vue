@@ -1,43 +1,67 @@
 <template>
     <div class="container">
+        <div class="empty" v-if="!list[0]">
+            <img src="~@/assets/images/wallet/none.png" alt="">
+            <p>暂无收益信息</p>
+        </div>
      <ul>
          <li v-for="(item, index) in list" :key="index">
              <div class="item">
-                 <p>{{item.title}}</p>
-                 <p>{{item.date}}</p>
+                 <p>{{item.sourceTitle}}</p>
+                 <p>{{item.bussDate}}</p>
              </div>
              <div class="item">
-                <span> + <img :src="item.img"/> 50</span>
+                <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> {{item.amt}}</span>
              </div>
          </li>
      </ul>
     </div>
 </template>
 <script>
+    import { commonApi } from "../../api";
     export default {
         name:'common-list',
+        props: {
+          request: {
+              type: Object,
+              default: function(){
+                  return {};
+              }
+          }
+        },
       data(){
           return{
-             list: [
-                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
-                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
-                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
-                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
-                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')},
-                 {title: '到店付收款-订单号：1235234', date:'2019-01-09 21:11:11', img: require('@/assets/images/wallet/icon-coin.png')}
-             ]
+            list: []
           }
       },
         mounted() {
-
+            this.query();
+        },
+        methods: {
+           async query(){
+                const { query, method } = this.request;
+                const res = await commonApi(query, method);
+                this.list = res.data || [];
+            },
         }
     }
 </script>
 <style scoped lang="scss">
     @import "~@/style/_mixin";
     //过度效果
-
 .container{
+    .empty{
+        padding-top: 20px;
+        text-align: center;
+        img{
+            width: 115px;
+            margin-left: -15px;
+        }
+        p{
+            font-size: 12px;
+            color: #333333;
+        }
+    }
     padding: 0 10px;
     background-color: white !important;
     li{

@@ -14,15 +14,22 @@
         <div class="upload-context">
             <p>身份证证件</p>
             <div class="photo-container">
-                <div class="item">
-                    <img src="../../assets/images/wallet/icon-add.png"/>
-                    <span>身份证人像面照片</span>
+                <div class="item" @click="uploadFn('front')">
+                    <img :class="{'pic-active':idCard.front.indexOf('oss') > -1}" :src="idCard.front"/>
+                    <span v-if="fileList.length < 1">身份证人像面照片</span>
                 </div>
-                <div class="item">
-                    <img src="../../assets/images/wallet/icon-add.png"/>
-                    <span>身份证国徽面照片</span>
+                <div class="item" @click="uploadFn('back')">
+                    <img :class="{'pic-active':idCard.back.indexOf('oss') > -1}" :src="idCard.back"/>
+                    <span v-if="fileList.length < 2">身份证国徽面照片</span>
                 </div>
             </div>
+            <van-uploader
+                    v-model="fileList"
+                    multiple
+                    :max-count="2"
+                    :after-read="uploaded"
+                    style="display: none"
+            />
             <van-cell-group>
                 <van-field label="证件姓名" v-model="info.name" placeholder="请输入证件上的姓名" />
                 <van-field label="证件号码" v-model="info.idNumber" placeholder="请输入证件上的号码" />
@@ -43,21 +50,33 @@
             <p>2、绑定储蓄卡的持卡人需与实名认证所用姓名一致。</p>
             <p>3、支持的银行卡：中国工商银行、中国农业银行、中国建设银行、中国交通银行、招商银行、兴业银行、华夏银行、中信银行、邮政储蓄等。</p>
         </div>
+        <van-overlay :show="show"> <van-loading size="24px">上传中...</van-loading> </van-overlay>
     </div>
 </template>
 <script>
-    import {Dialog} from 'vant'
+    import { Dialog, Toast } from 'vant';
+    import { asyncCreatScript } from '@/plugins/extension'
+    import {commonApi} from "../../api";
     export default {
         name: "applyInfo",
         data(){
             return {
+                show: false,
+                fileList: [],
                 info: {
                     name: '',
                     idNumber: '',
                     bankAccount: ''
                 },
                 firstStep: true,
+                idCard: {
+                    front: require('../../assets/images/wallet/icon-add.png'),
+                    back: require('../../assets/images/wallet/icon-add.png')
+                }
             }
+        },
+        created() {
+        //     if(!window.OSS) asyncCreatScript('https://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js');
         },
         methods: {
             onSubmit(){
@@ -67,6 +86,40 @@
                 }).catch(() =>{
                     console.log('done')
                 })
+            },
+            uploadFn(side){
+                let el = document.getElementsByClassName('van-uploader__input');
+                if(side === 'back' && this.fileList.length < 1){
+                    Toast('请先上传身份证正面！')
+                }else{
+                    el[el.length - 1].click();
+                }
+            },
+           async uploaded(file){
+                this.show = true;
+                let _this = this;
+                const res = await commonApi({uploadType: 'headPortrait'}, 'ossToken');
+
+                const client = new OSS.Wrapper({
+                    region: res.data.region,                 // 创建Bucket时会选择不同地区，根据自己的选择填入对应名称
+                    accessKeyId: res.data.AccessKeyId,         // 填入你的accessKeyId
+                    accessKeySecret: res.data.AccessKeySecret, // 填入你的accessKeySecret
+                    secure:true,
+                    stsToken: res.data.SecurityToken,
+                    bucket: res.data.bucketName
+                });
+               const Name = file.file.name;
+               const suffix = Name.substr(Name.indexOf('.'));          // 文件后缀
+               const filename = Date.parse(new Date()) + suffix;
+               await client.multipartUpload(res.data.catalogue+'/'+filename, file.file).then(res => {   // 上传
+                   let side = _this.fileList.length > 1 ? 'back' : 'front';
+                   _this.idCard[side] = res.res.requestUrls[0].split("?")[0];
+                    this.show = false;
+                }).catch(err => {
+                   this.show = false;
+                   Toast('上传失败！')
+                })
+
             }
         }
     }
@@ -78,9 +131,15 @@
         padding: 6px;
         background-color: white;
     }
+    .btn-active{
+        background:linear-gradient(#F10059, #FF0014);
+    }
     .btn-submit{
-        @include btn-submit;
+        @include btn-submit(absolute, #FB7B8A, #F67BA3);
         bottom: 20px;
+    }
+    .pic-active{
+        width: 100% !important;
     }
     .van-cell {
         padding: 10px 0;
@@ -88,6 +147,12 @@
     }
     .btn-active{
         background:linear-gradient(#F10059, #FF0014) !important;
+    }
+    .van-loading{
+        position: absolute !important;
+        top: 50%;
+        left: 35%;
+        color: white;
     }
     .container{
         background-color: #F8F8F8;

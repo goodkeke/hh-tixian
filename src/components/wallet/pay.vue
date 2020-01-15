@@ -45,8 +45,8 @@
 			touchFunc () {
 				if (this.payPassword.length === 6) {
 					this.isShow = false;
-					this.payPassword = '';
 					this.$emit('pay-success', this.payPassword);
+					this.payPassword = '';
 				}
 			},
 			close () {

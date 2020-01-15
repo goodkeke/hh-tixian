@@ -29,20 +29,11 @@
                     }
                 },
                 actions: [
-                    {
-                        type: 'all'
-                    },
-                    {
-                        type: 'income'
-                    },
-                    {
-                        type: 'disbursement'
-                    }
+                    { type: 'all' },
+                    { type: 'income' },
+                    { type: 'disbursement' }
                 ]
             }
-        },
-        mounted() {
-
         },
         methods:{
             returnPreview (){

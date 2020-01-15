@@ -61,6 +61,7 @@
 		},
 		methods: {
 			async paySuccess (password) {
+				console.log(password)
 				const res = await commonApi({amount: this.amount, passWord: password},'withdraw');
 				console.log(res);
 				this.payShow = false

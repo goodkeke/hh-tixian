@@ -1,20 +1,29 @@
 <template>
     <div class="container">
-        <div class="empty" v-if="!list[0]">
-            <img src="~@/assets/images/wallet/none.png" alt="">
-            <p>暂无收益信息</p>
-        </div>
-     <ul>
-         <li v-for="(item, index) in list" :key="index">
-             <div class="item">
-                 <p>{{item.sourceTitle}}</p>
-                 <p>{{item.bussDate}}</p>
-             </div>
-             <div class="item">
-                <span> + <img src="~@/assets/images/wallet/icon-coin.png"/> {{item.amt}}</span>
-             </div>
-         </li>
-     </ul>
+        <van-list
+        v-model="loading"
+        :finished="finished"
+        :immediate-check="false"
+        finished-text="没有更多了"
+        @load="onload"
+        :offset="10"
+        >
+            <div class="empty" v-if="!list[0]">
+                <img src="~@/assets/images/wallet/none.png" alt="">
+                <p>暂无收益信息</p>
+            </div>
+            <ul>
+                <li v-for="(item, index) in list" :key="index">
+                    <div class="item">
+                        <p>{{item.sourceTitle}}</p>
+                        <p>{{item.bussDate}}</p>
+                    </div>
+                    <div class="item">
+                        <span> <img src="~@/assets/images/wallet/icon-coin.png"/> {{item.amt}}</span>
+                    </div>
+                </li>
+            </ul>
+        </van-list>
     </div>
 </template>
 <script>
@@ -31,18 +40,28 @@
         },
       data(){
           return{
-            list: []
+              loading: false,
+              finished: false,
+              list: []
           }
       },
         mounted() {
             this.query();
         },
         methods: {
+            onload(){
+                this.request.query.pageNum ++;
+                this.query();
+            },
            async query(type){
                 const { query, method } = this.request;
                 query.type = type || 'all';
                 const res = await commonApi(query, method);
-                this.list = res.data || [];
+                if(res.data.length === 0 || !res.data){
+                    this.finished = true;
+                    return;
+                }
+                this.list = this.list.concat(res.data || []);
             },
         }
     }

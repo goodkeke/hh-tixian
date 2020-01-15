@@ -23,7 +23,7 @@
                         <span><img src="~@/assets/images/wallet/icon-coin.png" alt=""><i>{{indexData.coin}}</i> </span>
                     </div>
                     <div class="item">
-                        <button class="btn-cashing last-btn" @click="$router.push('/exchange')">兑换</button>
+                        <button class="btn-cashing last-btn" @click="$router.push({'name':'exchange',params:{'coin':indexData.coin}})">兑换</button>
                         <span class="des">支付现金：10000币=95元</span>
                     </div>
                 </div>

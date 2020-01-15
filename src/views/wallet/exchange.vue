@@ -50,7 +50,9 @@
             }
         },
         mounted(){
-            if(this.$route.query.money) this.money = this.$route.query.money;
+            // if(this.$route.params.coin) this.money = this.$route.params.coin;
+            this.money = this.$route.params.coin;
+            console.log(this.money)
         },
         watch:{
             amount:{

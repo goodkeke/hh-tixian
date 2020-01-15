@@ -13,7 +13,7 @@ const apiList = {
     walletIndex: 'finance.service.ScheduleInterestService.walletIndex', //钱包首页
     walletList: 'finance.service.ScheduleInterestService.getUserScheduleInterest', //钱包列表
     apply: 'finance.service.ScheduleInterestService.submitAttestation', //提交审核
-    withdraw:'finance.service.ScheduleInterestService.submitWithdrawDeposit',   //提现申请
+    exchange:'finance.service.UserCoinWalletService.huhaCoinChangeWallet',   //提现申请
     ossToken: 'message.service.ALiYunOssService.getOssSTSToken' //获取OSS上传token
 };
 

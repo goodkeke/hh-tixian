@@ -39,7 +39,7 @@
         name: "exchange",
         data(){
             return{
-                money:'89999.90',
+                money:'',
                 amount:'',
                 tip:'最低兑换数量10000个，请输入10000或10000的倍数',
                 err:true,
@@ -50,7 +50,6 @@
             }
         },
         mounted(){
-            // if(this.$route.params.coin) this.money = this.$route.params.coin;
             this.money = this.$route.params.coin || 0;
             console.log(this.money)
         },
@@ -58,7 +57,7 @@
             amount:{
                 handler(val){
                     if(val){
-                        if(val>=10000 && val%10000 == 0 && Number(val) < Number(this.money)){
+                        if(val>=10000 && val%10000 == 0 && Number(val) <= Number(this.money)){
                             this.err = false;
                             this.disabled = false;
                             this.tip = '可兑换'+parseInt(val/10000)*95+'元';
@@ -81,12 +80,18 @@
                 deep:true
             },
             pwd:{
-                handler(val){
+               async handler(val){
                     if(val.length == 6){
-                        console.log('11111',this.pwd.length)
-                        const res = commonApi({passWord:val,amount:this.amount},'withdraw','post');
+                        const res = await commonApi({passWord:val,coin:this.amount},'exchange','post');
                         console.log('2222222222',res)
-                        // Toast('兑换成功')
+                        if(res.data == true){
+                            this.pwd = '';
+                            this.money -= this.amount;
+                            this.disabled = true;
+                            this.amount = '';
+                            this.isShowPop = !this.isShowPop;
+                            Toast('兑换成功')
+                        }
                     }
                 },
                 deep:true

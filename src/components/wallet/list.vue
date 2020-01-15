@@ -38,8 +38,9 @@
             this.query();
         },
         methods: {
-           async query(){
+           async query(type){
                 const { query, method } = this.request;
+                query.type = type || 'all';
                 const res = await commonApi(query, method);
                 this.list = res.data || [];
             },

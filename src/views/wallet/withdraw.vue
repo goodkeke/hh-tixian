@@ -2,34 +2,31 @@
     <div class="container">
         <van-cell-group>
             <van-field
-              v-model="cardNum"
-			  readonly
+              v-model="bankNum"
               label="银行卡号"
-              placeholder="请输入用户名"
-            />
-				
+              placeholder=""
+			  readonly="readonly"/>
             <van-field
               v-model="existMoney"
               label="可提现金额"
+			  readonly="readonly"
               placeholder="0.00"
-			  input-align="right"
-            >
+			  input-align="right">
 				<span class="unit" slot="button">元</span>
 			</van-field>
             <van-field
-              v-model="withdrawMoney"
+              v-model="amount"
               label="提现金额"
               placeholder="请输入100或100的倍数金额"
-			  input-align="right"
-            >
+			  input-align="right">
 				<span class="unit" slot="button">元</span>
 			</van-field>
             <van-field
               v-model="serveMoney"
               label="提现服务费"
+			  readonly="readonly"
               placeholder="0.00"
-			  input-align="right"
-            >
+			  input-align="right">
 				<span class="unit" slot="button">元</span>
 			</van-field>
           </van-cell-group>
@@ -40,9 +37,9 @@
 		  <div class="btn-submit" @click="submit">提交</div>
     </div>
 </template>
-
 <script>
 	import pay from '../../components/wallet/pay.vue'
+	import {commonApi} from "../../api";
     export default {
 		name: 'withdraw',
 		components: {
@@ -50,29 +47,33 @@
 		},
         data () {
             return {
-				cardNum: '',
+				bankNum: '',
 				existMoney: '',
-				withdrawMoney: '',
+				amount: '',
 				serveMoney: '',
 				payShow: false
             }
 		},
+		created() {
+			this.bankNum = this.$route.params.info.bankCard;
+		},
 		mounted () {
 		},
 		methods: {
-			paySuccess (password) {
+			async paySuccess (password) {
+				const res = await commonApi({amount: this.amount, passWord: password},'withdraw');
+				console.log(res);
 				this.payShow = false
 			},
 			payFail () {
 				this.payShow = false
 			},
-			submit () {
+			 submit () {
 				this.payShow = true
 			}
 		}
     }
 </script>
-
 <style scoped lang="scss">
 	@import "~@/style/_mixin";
     .container{

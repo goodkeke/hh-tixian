@@ -44,20 +44,20 @@
 		methods: {
 			touchFunc () {
 				if (this.payPassword.length === 6) {
-					this.isShow = false
-					this.payPassword = ''
-					this.$emit('pay-success', this.payPassword)
+					this.isShow = false;
+					this.payPassword = '';
+					this.$emit('pay-success', this.payPassword);
 				}
 			},
 			close () {
-				this.isShow = false
-				this.payPassword = ''
-				this.$emit('pay-fail', false)
+				this.isShow = false;
+				this.payPassword = '';
+				this.$emit('pay-fail', false);
 			}
 		},
 		watch: {
 			show (val) {
-				this.isShow = val
+				this.isShow = val;
 			}
 		}
     }

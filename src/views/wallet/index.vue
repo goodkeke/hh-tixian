@@ -79,7 +79,8 @@
             },
             withdraw(){
                 let path = this.indexData.attestation ? 'withdraw' : 'applyInfo';
-                this.$router.push('applyInfo');
+                let { attestationEntity } = this.indexData;
+                this.$router.push({ name: path, params: { info: attestationEntity } });
             }
         }
     }

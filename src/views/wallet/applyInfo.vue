@@ -145,13 +145,14 @@
                  this.showPic1 = false;
                 const methods = {
                     name: this.info.name,
-                    cardFrond: this.idCard.front,
+                    cardFront: this.idCard.front,
                     cardBack: this.idCard.back,
-                    backCard: this.info.bankAccount
+                    bankCard: this.info.bankAccount,
+                    cardNum: this.info.idNumber
                 };
                 const res = await commonApi(methods, 'apply');
                 Toast(res.retCode === 'SUCCESS' ? '提交成功': res.retMsg);
-                res.retCode === 'SUCCESS' && this.$router.push('withdraw');
+                res.retCode === 'SUCCESS' && this.$router.push({name:'withdraw',params:{info:{bankCard: methods.bankCard}}});
 
             },
            async uploaded(file){

@@ -14,18 +14,18 @@
 			<div class="download-desc">到店 → 简易介绍 → 放下传单 → 下一家</div>
 			<div class="download-desc-2">打印100份放包里，每个商家五分钟，再来两次加深印象。商家扫码注册，这个客户永远都是你的！</div>
 		</div>
-		<div class="block-gray"></div>
-		<div class="section section-two">
-			<div class="tag tag-down">邀请商家电子海报</div>
-			<div class="main">
-				<div class="canvas" id="poster2" v-if="poster2">
-					<img class="bg" :src="imgData2.images" alt="" />
-					<img class="code" :src="imgData2.qrCode" alt="" />
-				</div>
-				<img class="bg" @click="saveImages(posterUrl2)" v-else :src="posterUrl2" />
-			</div>
-			<div class="download-text tag-up">{{isInBrowser ? '长按保存图片':'点击图片下载'}}，用于发微信好友及朋友圈等</div>
-		</div>
+<!--		<div class="block-gray"></div>-->
+<!--		<div class="section section-two">-->
+<!--			<div class="tag tag-down">邀请商家电子海报</div>-->
+<!--			<div class="main">-->
+<!--				<div class="canvas" id="poster2" v-if="poster2">-->
+<!--					<img class="bg" :src="imgData2.images" alt="" />-->
+<!--					<img class="code" :src="imgData2.qrCode" alt="" />-->
+<!--				</div>-->
+<!--				<img class="bg" @click="saveImages(posterUrl2)" v-else :src="posterUrl2" />-->
+<!--			</div>-->
+<!--			<div class="download-text tag-up">{{isInBrowser ? '长按保存图片':'点击图片下载'}}，用于发微信好友及朋友圈等</div>-->
+<!--		</div>-->
 		<div class="block-gray"></div>
 		<div class="section section-three">
 			<div class="tag tag-down">电子海报-给商家或朋友</div>

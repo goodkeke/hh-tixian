@@ -9,8 +9,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import animate from 'animation.css'
 // require styles
 import 'swiper/dist/css/swiper.css'
-Vue.use(animate)
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
+Vue.use(animate);
+Vue.use(VueAwesomeSwiper, /* { default global options } */);
 /*
  @按需引入vant组件
   */
@@ -34,7 +34,7 @@ router.afterEach((to, from) => {
   if(to.meta.name){
     document.title = to.meta.name;
   }
-})
+});
 
 
 

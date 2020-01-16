@@ -1,13 +1,16 @@
 import axios from 'axios'
 import { Toast } from 'vant';
 import { encryptBy, decryptBy, callMd5,getQueryStringV } from "@/plugins/extension";
-import apiList from "../api/config";
 import Qs from 'qs'
-import router from '../router'
+import walletRouter from "../routers/wallter";
 
+//钱包路路由名称，根据名称判断使用不同的api 请求地址
+let _href = window.location.href;
+let baseUrl = walletRouter.find((item)=> _href.indexOf(item.name) > -1);
+baseUrl = baseUrl ? process.env.VUE_APP_WALLTER_API : process.env.VUE_APP_API;
 // 创建axios实例
 const service = axios.create({
-    baseURL: process.env.VUE_APP_API, // api的baseURL如果启用mock则使用mock地址
+    baseURL: baseUrl,
     timeout: 60000 // 请求超时时间,
 });
 const requestKey = 'U2FsdGVkX189N3VRCrUckSMoQM98v8PB';

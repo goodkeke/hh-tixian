@@ -91,7 +91,7 @@
                             this.amount = '';
                             this.isShowPop = !this.isShowPop;
                             Toast('兑换成功');
-                            await this.$router.push('/wallet')
+                            await this.$router.push('/wallet');
                         }
                     }
                 },

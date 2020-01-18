@@ -19,6 +19,7 @@ const appKey = 'cb6015828a44b5234ce9ed1c3bc7acb0';
 const SEEDMD5 = callMd5(requestKey);
 // request拦截器
 service.interceptors.request.use(config => {
+    console.log('??????====>',config);
     // @如果启用mock则使用mock地址
     if( process.env.VUE_APP_MOCK === 'true'){
         return config;
